@@ -1,7 +1,19 @@
 package com.example;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
+
+    @Override
+    public void start(Stage stage) {
+        
+    }
+
     public static void main(String[] args) {
-        System.out.println("Welcome");
+        launch(args);
     }
 }
