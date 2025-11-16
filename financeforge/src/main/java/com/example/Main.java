@@ -33,11 +33,25 @@ public class Main extends Application {
         while (true){
         System.out.print("\n");
         System.out.print(input);
-        
+
         try {
         return Integer.parseInt(sc.nextLine());
         } catch (NumberFormatException e) {
-        System.out.println("\nThis is not an integer. Pack it up vro");
+        System.out.println("\nThis is not an integer");
+        } 
+    }
+    }
+
+    // Quickens the input process to just one line (for integer)
+    public static double getDoubleInput(String input) {
+        while (true){
+        System.out.print("\n");
+        System.out.print(input);
+
+        try {
+        return (double) Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException e) {
+        System.out.println("\nThis is NOT a number vro");
         } 
     }
     }
