@@ -17,7 +17,7 @@ public class BankAccount {
     public void changeId(String id) {this.userid = id;}
 
     // To Change the Balance of the account
-    public void addToBalance(double money) {this.accountBalance = money;}
+    public void addToBalance(double money) {this.accountBalance += money;}
     public void removeFromBalance(double money) {
         if (money > this.accountBalance) 
             {this.accountBalance = 0;} 

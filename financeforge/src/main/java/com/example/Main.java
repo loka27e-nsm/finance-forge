@@ -42,7 +42,7 @@ public class Main extends Application {
     }
     }
 
-    // Quickens the input process to just one line (for integer)
+    // Quickens the input process to just one line (for double)
     public static double getDoubleInput(String input) {
         while (true){
         System.out.print("\n");
@@ -55,4 +55,6 @@ public class Main extends Application {
         } 
     }
     }
+
+
 }
