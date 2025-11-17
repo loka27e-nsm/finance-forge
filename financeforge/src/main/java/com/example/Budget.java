@@ -19,4 +19,12 @@ public class Budget {
             return false;
         }
     }
+
+    public boolean checkBudgetProgress(double expenses) {
+        if (expenses > this.budgetGoal) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
