@@ -1,60 +1,63 @@
 package com.example;
 import javafx.application.Application;
-import javafx.scene.Scene; // yellow line means we haven't used the module.
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.Scene; // yellow line means we haven't used the module
 import javafx.stage.Stage;
-import java.util.*;
 
 public class Main extends Application {
 
-    static Scanner sc = new Scanner(System.in);
+    private Scene scene;
+    private GameSceneManager sceneManager;
 
     @Override
-    public void start(Stage stage) {
-        
-    }
+    public void start(Stage startStage) {
+        sceneManager = new GameSceneManager();
+        //Start on the main menu screen
+        var initialRoot = sceneManager.createMenuView();
+
+        //Create one Scene and reuse it
+        scene = new Scene(initialRoot, 800, 600);
+        // Give the Scene to the manager so it can swap roots later
+        sceneManager.setScene(scene);
+        startStage.setTitle("Scene Switching Example");
+        startStage.setScene(scene);
+        startStage.show();
+   }
 
     public static void main(String[] args) {
         launch(args);
     }
-
-    // Quickens the input process to just one line
-    public static String getStrInput(String input) {
-    System.out.print("\n");
-    System.out.print(input);
-    
-    return sc.nextLine();
-  }
-
-    // Quickens the input process to just one line (for integer)
-    public static int getIntInput(String input) {
-        while (true){
-        System.out.print("\n");
-        System.out.print(input);
-
-        try {
-        return Integer.parseInt(sc.nextLine());
-        } catch (NumberFormatException e) {
-        System.out.println("\nThis is not an integer");
-        } 
-    }
-    }
-
-    // Quickens the input process to just one line (for double)
-    public static double getDoubleInput(String input) {
-        while (true){
-        System.out.print("\n");
-        System.out.print(input);
-
-        try {
-        return (double) Integer.parseInt(sc.nextLine());
-        } catch (NumberFormatException e) {
-        System.out.println("\nThis is NOT a number vro");
-        } 
-    }
-    }
-
-
 }
+
+// package jfx_examples;
+
+// import javafx.application.Application;
+// import javafx.scene.Scene;
+// import javafx.stage.Stage;
+
+// public class _14Main extends Application {
+
+//   private Scene scene;
+//   private _14SceneManager sceneManager;
+
+//   @Override
+//   public void start(Stage primaryStage) {
+//     sceneManager = new _14SceneManager();
+
+//     // Start on the main menu screen
+//     var initialRoot = sceneManager.createMenuView();
+
+//     // Create one Scene and reuse it
+//     scene = new Scene(initialRoot, 800, 600);
+
+//     // Give the Scene to the manager so it can swap roots later
+//     sceneManager.setScene(scene);
+
+//     primaryStage.setTitle("Scene Switching Example");
+//     primaryStage.setScene(scene);
+//     primaryStage.show();
+//   }
+
+//   public static void main(String[] args) {
+//     launch(args);
+//   }
+// }

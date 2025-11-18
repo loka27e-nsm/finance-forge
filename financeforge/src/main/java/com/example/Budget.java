@@ -1,6 +1,7 @@
 package com.example;
 
 public class Budget {
+    // Monthly Budget
     private double budgetGoal;
 
     public Budget(double budgetGoal){
