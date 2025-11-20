@@ -13,4 +13,12 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+
+  <dependencies>
+    <dependency>
+      <groupId>cn.keayuan</groupId>
+      <artifactId>util-log-ui</artifactId>
+      <version>0.0.1</version>
+    </dependency>
+  </dependencies>
 </project>

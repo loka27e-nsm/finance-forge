@@ -21,6 +21,14 @@ public class GameSceneManager {
     return new GameMenuView(this);
   }
 
+  public Parent createLogView() {
+    return new LogView(this);
+  }
+
+  public Parent createQuestView() {
+    return new QuestView(this);
+  }
+
   // Public navigation methods:
 
   public void showMainMenu() {
@@ -31,6 +39,21 @@ public class GameSceneManager {
   public void showGame() {
     ensureSceneInitialized();
     scene.setRoot(createGameView());
+  }
+
+  public void showLogging() {
+    ensureSceneInitialized();
+    scene.setRoot(createLogView());
+  }
+
+  // public void showDashboard() {
+  //   ensureSceneInitialized();
+  //   scene.setRoot(createLogView());
+  // }
+
+  public void showQuest() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuestView());
   }
 
   private void ensureSceneInitialized() {
