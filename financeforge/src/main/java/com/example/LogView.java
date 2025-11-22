@@ -54,6 +54,7 @@ public class LogView extends BorderPane{
     Button logStatementButton = new Button("Log Statement");
     logStatementButton.setPrefSize(200,30);
     logStatementButton.setFont(new Font("Cambria", 21));
+    logStatementButton.setOnAction(e -> sceneManager.showStatement());
 
     HBox logStateBox = new HBox(logStatementButton);
     logStateBox.setAlignment(Pos.CENTER);
