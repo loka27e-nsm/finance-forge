@@ -1,17 +1,23 @@
 package com.example;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
 // import java.util.ArrayList;
 import javafx.scene.text.Font;
+import javafx.scene.chart.*;
 
 
 
 public class GameMenuView extends BorderPane {
 
+  static int progressPercent; 
   public GameMenuView(GameSceneManager sceneManager) {
     // Top bar with a "Back to Menu" button
     Button backButton = new Button("Back to Menu");
@@ -56,16 +62,22 @@ public class GameMenuView extends BorderPane {
     Button balance = new Button("Current Balance:");
     balance.setFont(new Font("Helvetica", 30));
     balance.setFont(new Font("Cambria", 30));
-    
-    //recordStatementButton.setStyle("-fx-background-color: #66d1ff89");
-    // PieChart budgetChart = new PieChart(new ArrayList<Integer>());
-    // bu//dgetChart.setPrefSize(30, 30);
-
-// , budgetChartnceBox =// new HBox(balance, budgetChart);
-//     bala//nceBox.setAlignment(Pos.CENTER);
-//     balanceBox.setSpacing(320);
-    
     balance.setStyle("-fx-background-color: #66d1ff89; -fx-border-color: #669cff89; -fx-border-width: 2");
+
+    ObservableList<PieChart.Data> pieChartData =
+      FXCollections.observableArrayList(
+      );
+    final PieChart budgetChart = new PieChart(pieChartData);
+    budgetChart.setPrefSize(400,600);
+
+    Label chartLabel = new Label("Budget Visual");
+    chartLabel.setStyle("-fx-padding: 0 160 0 0");
+    chartLabel.setFont(new Font("Cambria", 18));
+
+    VBox balanceBox = new VBox(chartLabel, budgetChart);
+    balanceBox.setAlignment(Pos.CENTER_RIGHT);
+    balanceBox.setStyle("-fx-padding: 100 0 100 0");
+    
     Button points = new Button("Points Earned:");
     points.setFont(new Font("Helvetica", 30));
 
@@ -75,19 +87,27 @@ public class GameMenuView extends BorderPane {
     points.setStyle("-fx-background-color: #66d1ff89; -fx-border-color: #669cff89; -fx-border-width: 2");    
     VBox dashboardActions = new VBox(recordStatementButton, balance, points);
     dashboardActions.setAlignment(Pos.CENTER_LEFT);
-    dashboardActions.setStyle("-fx-padding: 0 0 0 40;");
+    dashboardActions.setStyle("-fx-padding: 0 0 0 0;");
     dashboardActions.setSpacing(50);
-
     
+    progressPercent = 0;
+    ProgressBar questBar = new ProgressBar(progressPercent/100.0);
+    questBar.setPrefWidth(560);
+    questBar.setStyle("-fx-accent: #ee0d0db7; -fx-border-color: #1ccf3aff; -fx-border-width: 1");
+    
+    Label questLabel = new Label("Quest Progress");
 
-    // Label ho = new Label("dash");    
+    VBox questBox = new VBox(questLabel, questBar);
+    questBox.setAlignment(Pos.CENTER);
+    questBox.setStyle("-fx-padding: 0 0 10 0");
 
-    // setCenter(ho);
 
     
     setTop(navButtons);
     setCenter(dashboardActions);
-    //setCenter(budgetChart);
+    if (!budgetChart.getData().isEmpty()) {setRight(balanceBox);}
+    setBottom(questBox);
+
 
     
 }

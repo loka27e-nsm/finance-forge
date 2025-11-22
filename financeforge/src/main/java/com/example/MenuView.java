@@ -22,7 +22,7 @@ public class MenuView extends VBox {
     exitButton.setPrefSize(250, 80); 
     exitButton.setFont(new Font("Cambria", 30));
     Label title = new Label("Finance Forge");
-    title.setFont(new Font("Helvetica", 50));
+    title.setFont(new Font("Helvetica", 65));
 
     // Hook up behavior
     startButton.setOnAction(e -> sceneManager.showGame());

@@ -29,6 +29,10 @@ public class GameSceneManager {
     return new QuestView(this);
   }
 
+  public Parent createStatementView() {
+    return new LogStatement(this);
+  }
+
   // Public navigation methods:
 
   public void showMainMenu() {
@@ -44,6 +48,11 @@ public class GameSceneManager {
   public void showLogging() {
     ensureSceneInitialized();
     scene.setRoot(createLogView());
+  }
+
+  public void showStatement() {
+    ensureSceneInitialized();
+    scene.setRoot(createStatementView());
   }
 
   // public void showDashboard() {
