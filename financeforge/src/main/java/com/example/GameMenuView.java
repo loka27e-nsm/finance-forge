@@ -37,7 +37,7 @@ public class GameMenuView extends BorderPane {
     Button dashboardButton = new Button("Dashboard");
     dashboardButton.setPrefSize(215, 60); 
     dashboardButton.setFont(new Font("Cambria", 26));
-    dashboardButton.setStyle("-fx-background-color: #32df32c3; -fx-border-color: #105b26c8; -fx-border-width: 2");
+    dashboardButton.setStyle("-fx-background-color: linear-gradient(#32df32c3, #1ec31ec3); -fx-border-color: #105b26c8; -fx-border-width: 2");
     Button questButton = new Button("Quest");
     questButton.setPrefSize(215, 60); 
     questButton.setFont(new Font("Cambria", 26));
@@ -54,15 +54,17 @@ public class GameMenuView extends BorderPane {
     navButtons.setSpacing(10);
 
     Button recordStatementButton = new Button ("Record Statement");
-    recordStatementButton.setPrefSize(325, 70); 
+    recordStatementButton.setPrefSize(275, 70); 
     recordStatementButton.setFont(new Font("Cambria", 30));
     //recordStatementButton.setStyle("-fx-background-color: #66d1ff89");
-    recordStatementButton.setStyle("-fx-background-color: #66d1ff89; -fx-border-color: #669cff89; -fx-border-width: 2");
+    //recordStatementButton.setStyle("-fx-background-color: #66d1ff89; -fx-border-color: #669cff89; -fx-border-width: 2");
+
+    recordStatementButton.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #8ed7f6d7); -fx-border-color: #669cff89; -fx-border-width: 2");
     recordStatementButton.setOnAction(e -> sceneManager.showLogging());
     Button balance = new Button("Current Balance:");
-    balance.setFont(new Font("Helvetica", 30));
     balance.setFont(new Font("Cambria", 30));
-    balance.setStyle("-fx-background-color: #66d1ff89; -fx-border-color: #669cff89; -fx-border-width: 2");
+    balance.setPrefSize(275, 70);
+    balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #8ed7f6d7); -fx-border-color: #669cff89; -fx-border-width: 2");
 
     ObservableList<PieChart.Data> pieChartData =
       FXCollections.observableArrayList(
@@ -84,10 +86,12 @@ public class GameMenuView extends BorderPane {
 
     points.setFont(new Font("Cambria", 30));
     //recordStatementButton.setStyle("-fx-background-color: #66d1ff89");
-    points.setStyle("-fx-background-color: #66d1ff89; -fx-border-color: #669cff89; -fx-border-width: 2");    
+    points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #8ed7f6d7); -fx-border-color: #669cff89; -fx-border-width: 2");    
+    points.setPrefSize(275, 70);
+    
     VBox dashboardActions = new VBox(recordStatementButton, balance, points);
     dashboardActions.setAlignment(Pos.CENTER_LEFT);
-    dashboardActions.setStyle("-fx-padding: 0 0 0 0;");
+    dashboardActions.setStyle("-fx-padding: 0 0 0 40;");
     dashboardActions.setSpacing(50);
     
     progressPercent = 0;
