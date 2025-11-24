@@ -32,19 +32,22 @@ public class QuestView extends BorderPane{
     dashboardButton.setFont(new Font("Cambria", 26));
     dashboardButton.setOnAction(e -> sceneManager.showGame());
     dashboardButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2");
-
+    dashboardButton.setOnMouseEntered(e ->  dashboardButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #14973bda; -fx-border-width: 4"));
+    dashboardButton.setOnMouseExited(e ->  dashboardButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2"));
     
     Button questButton = new Button("Quest");
     questButton.setPrefSize(215, 60); 
     questButton.setFont(new Font("Cambria", 26));
     questButton.setStyle("-fx-background-color: #32df32c3; -fx-border-color: #105b26c8; -fx-border-width: 2");
+    
 
     Button loggingButton = new Button("Logging");
     loggingButton.setPrefSize(215, 60); 
     loggingButton.setFont(new Font("Cambria", 26));
     loggingButton.setOnAction(e -> sceneManager.showLogging());
     loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2");
-
+    loggingButton.setOnMouseEntered(e ->  loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #14973bda; -fx-border-width: 4"));
+    loggingButton.setOnMouseExited(e ->  loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2"));
 
     HBox navButtons = new HBox(backButton, dashboardButton, questButton, loggingButton);
     navButtons.setAlignment(Pos.CENTER);

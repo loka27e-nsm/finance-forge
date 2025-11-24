@@ -39,16 +39,23 @@ public class GameMenuView extends BorderPane {
     dashboardButton.setFont(new Font("Cambria", 26));
     dashboardButton.setStyle("-fx-background-color: linear-gradient(#32df32c3, #1ec31ec3); -fx-border-color: #105b26c8; -fx-border-width: 2");
    
+
     Button questButton = new Button("Quest");
     questButton.setPrefSize(215, 60); 
     questButton.setFont(new Font("Cambria", 26));
     questButton.setOnAction(e -> sceneManager.showQuest());
     questButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2");
+    questButton.setOnMouseEntered(e ->  questButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #14973bda; -fx-border-width: 4"));
+    questButton.setOnMouseExited(e ->  questButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2"));
+   
+   
     Button loggingButton = new Button("Logging");
     loggingButton.setPrefSize(215, 60); 
     loggingButton.setFont(new Font("Cambria", 26));
     loggingButton.setOnAction(e -> sceneManager.showLogging());
     loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2");
+    loggingButton.setOnMouseEntered(e ->  loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #14973bda; -fx-border-width: 4"));
+    loggingButton.setOnMouseExited(e ->  loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2"));
 
     HBox navButtons = new HBox(backButton, dashboardButton, questButton, loggingButton);
     navButtons.setAlignment(Pos.CENTER);
@@ -72,21 +79,20 @@ public class GameMenuView extends BorderPane {
     balance.setOnMouseEntered(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
     balance.setOnMouseExited(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
     
-    
+    // This whole thing is for the creation of the chart
     ObservableList<PieChart.Data> pieChartData =
       FXCollections.observableArrayList(
       );
     final PieChart budgetChart = new PieChart(pieChartData);
     budgetChart.setPrefSize(400,600);
-
     Label chartLabel = new Label("Budget Visual");
     chartLabel.setStyle("-fx-padding: 0 160 0 0");
     chartLabel.setFont(new Font("Cambria", 18));
-
     VBox balanceBox = new VBox(chartLabel, budgetChart);
     balanceBox.setAlignment(Pos.CENTER_RIGHT);
     balanceBox.setStyle("-fx-padding: 100 0 100 0");
     
+    // This is for the points button
     Button points = new Button("Points Earned:");
     points.setFont(new Font("Helvetica", 30));
     points.setFont(new Font("Cambria", 30));

@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-
+import javafx.scene.control.Label;
 
 public class LogView extends BorderPane{
     
@@ -34,12 +34,16 @@ public class LogView extends BorderPane{
     dashboardButton.setFont(new Font("Cambria", 26));
     dashboardButton.setOnAction(e -> sceneManager.showGame());
     dashboardButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2");
+    dashboardButton.setOnMouseEntered(e ->  dashboardButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #14973bda; -fx-border-width: 4"));
+    dashboardButton.setOnMouseExited(e ->  dashboardButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2"));
 
     Button questButton = new Button("Quest");
     questButton.setPrefSize(215, 60); 
     questButton.setFont(new Font("Cambria", 26));
     questButton.setOnAction(e -> sceneManager.showQuest());
     questButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2");
+    questButton.setOnMouseEntered(e ->  questButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #14973bda; -fx-border-width: 4"));
+    questButton.setOnMouseExited(e ->  questButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2"));
 
     Button loggingButton = new Button("Logging");
     loggingButton.setPrefSize(215, 60); 
@@ -65,6 +69,7 @@ public class LogView extends BorderPane{
     // Label ho = new Label("log");  
     TableView table = new TableView();
     table.setEditable(true);
+    table.setPlaceholder(new Label("No data collected"));
 
     TableColumn changeCol = new TableColumn("(+/-)");
     changeCol.setMinWidth(80);
