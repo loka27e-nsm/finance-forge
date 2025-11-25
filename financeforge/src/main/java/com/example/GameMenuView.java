@@ -76,8 +76,8 @@ public class GameMenuView extends BorderPane {
     balance.setFont(new Font("Cambria", 30));
     balance.setPrefSize(275, 70);
     balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2");
-    balance.setOnMouseEntered(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
-    balance.setOnMouseExited(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
+    // balance.setOnMouseEntered(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
+    // balance.setOnMouseExited(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
     
     // This whole thing is for the creation of the chart
     ObservableList<PieChart.Data> pieChartData =
@@ -98,8 +98,8 @@ public class GameMenuView extends BorderPane {
     points.setFont(new Font("Cambria", 30));
     //recordStatementButton.setStyle("-fx-background-color: #66d1ff89");
     points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2");
-    points.setOnMouseEntered(e -> points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
-    points.setOnMouseExited(e -> points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
+    // points.setOnMouseEntered(e -> points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
+    // points.setOnMouseExited(e -> points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
     points.setPrefSize(275, 70);
     
     VBox dashboardActions = new VBox(recordStatementButton, balance, points);
