@@ -64,8 +64,6 @@ public class GameMenuView extends BorderPane {
     Button recordStatementButton = new Button ("Record Statement");
     recordStatementButton.setPrefSize(275, 70); 
     recordStatementButton.setFont(new Font("Cambria", 30));
-    //recordStatementButton.setStyle("-fx-background-color: #66d1ff89");
-    //recordStatementButton.setStyle("-fx-background-color: #66d1ff89; -fx-border-color: #669cff89; -fx-border-width: 2");
     recordStatementButton.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2");
     recordStatementButton.setOnMouseEntered(e -> recordStatementButton.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
     recordStatementButton.setOnMouseExited(e -> recordStatementButton.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
