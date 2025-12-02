@@ -33,6 +33,46 @@ public class GameSceneManager {
     return new LogStatement(this);
   }
 
+  public Parent createQuest1() {
+    return new Quest(this,1);
+  }
+
+  public Parent createQuest2() {
+    return new Quest(this,2);
+  }
+  
+  public Parent createQuest3() {
+    return new Quest(this,3);
+  }
+
+  public Parent createQuest4() {
+    return new Quest(this,4);
+  }
+
+  public Parent createQuest5() {
+    return new Quest(this,5);
+  }
+
+  public Parent createQuest6() {
+    return new Quest(this,6);
+  }
+
+  public Parent createQuest7() {
+    return new Quest(this,7);
+  }
+
+  public Parent createQuest8() {
+    return new Quest(this,8);
+  }
+
+  public Parent createQuest9() {
+    return new Quest(this,9);
+  }
+
+  public Parent createQuest10() {
+    return new Quest(this,10);
+  }
+
   // Public navigation methods:
 
   public void showMainMenu() {
@@ -55,6 +95,47 @@ public class GameSceneManager {
     scene.setRoot(createStatementView());
   }
 
+  public void showQuest1() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest1());
+  }
+  public void showQuest2() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest2());
+  }
+  public void showQuest3() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest3());
+  }
+  public void showQuest4() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest4());
+  }
+  public void showQuest5() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest5());
+  }
+  public void showQuest6() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest6());
+  }
+  public void showQuest7() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest7());
+  }
+  public void showQuest8() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest8());
+  }
+  public void showQuest9() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest9());
+  }
+  public void showQuest10() {
+    ensureSceneInitialized();
+    scene.setRoot(createQuest10());
+  }
+  
   // public void showDashboard() {
   //   ensureSceneInitialized();
   //   scene.setRoot(createLogView());

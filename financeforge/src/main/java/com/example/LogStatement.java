@@ -14,8 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ComboBox;
 
 
-
-
 public class LogStatement extends BorderPane {
 
     public LogStatement(GameSceneManager sceneManager) {
@@ -35,7 +33,7 @@ public class LogStatement extends BorderPane {
         categoryBox.setAlignment(Pos.CENTER);
         categoryBox.setSpacing(10);
 
-        Label dateLabel = new Label("Date:");
+        Label dateLabel = new Label("Date (M/D/Y):");
         TextField dateInput = new TextField();
         //dateInput.getItems().addAll("Food","Transportation","Utilities","Entertainment","Clothing","Miscellaneous", "Paycheck", "Gift", "Bonus");
         HBox dateBox = new HBox(dateLabel, dateInput);
@@ -69,19 +67,30 @@ public class LogStatement extends BorderPane {
         submitButton.setPrefSize(100, 40); 
         submitButton.setMaxSize(100,40);
         submitButton.setFont(new Font("Cambria", 21));
-        submitButton.setOnAction(e -> submitLogging(plusInput.getValue().toString())); 
+        submitButton.setOnAction(e -> {
+            // Enter code to be executed
+            try{
+                // Values for user inputs
+                String plusValue = plusInput.getValue().toString();
+                String categoryValue = categoryInput.getValue().toString();
+                String dateValue = dateInput.getText();
+                double amountValue = Double.parseDouble(amountInput.getText());
 
-        VBox leaveBox = new VBox(submitButton, backBox);
+            
+            } catch (NullPointerException n) {
+                // Code if user doesn't complete the statement
+            }
+        }); 
+
+        HBox submitBox = new HBox(submitButton);
+        submitBox.setAlignment(Pos.CENTER);
+
+        VBox leaveBox = new VBox(submitBox, backBox);
+        leaveBox.setSpacing(20);
 
         setCenter(inputBox);
         setBottom(leaveBox);
         
         
-    }
-
-    public void submitLogging(GameSceneManager sceneManager, String plusFinal) {
-
-        
-        sceneManager.showLogging();
     }
 }

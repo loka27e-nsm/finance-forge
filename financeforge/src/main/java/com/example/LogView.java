@@ -66,7 +66,7 @@ public class LogView extends BorderPane{
     VBox topButtons = new VBox(navButtons,logStateBox);
     topButtons.setSpacing(20);
 
-    // Label ho = new Label("log");  
+    // TABLE  
     TableView table = new TableView();
     table.setEditable(true);
     table.setPlaceholder(new Label("No data collected"));
@@ -87,6 +87,8 @@ public class LogView extends BorderPane{
     amtCol.setMinWidth(160);
     amtCol.setPrefWidth(160);
     amtCol.setMaxWidth(160);
+
+    // TableRow 
     // table is 640 width 
         
     table.getColumns().addAll(changeCol, catCol, dateCol, amtCol);
@@ -96,8 +98,8 @@ public class LogView extends BorderPane{
     tableBox.setPadding(new Insets(30, 80, 10, 80));
     tableBox.setPrefHeight(100);
     tableBox.setPrefWidth(100);
-    // setCenter(ho);
-
+    
+    // table.getItems(new observableArrayList());
     
     setTop(topButtons);
     setCenter(tableBox);
