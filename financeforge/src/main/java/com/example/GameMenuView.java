@@ -3,21 +3,22 @@ package com.example;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
-// import java.util.ArrayList;
 import javafx.scene.text.Font;
-import javafx.scene.chart.*;
 
 
 
 public class GameMenuView extends BorderPane {
 
+  static int pointsEarned = 0;
   static int progressPercent; 
+
   public GameMenuView(GameSceneManager sceneManager) {
     // Top bar with a "Back to Menu" button
     Button backButton = new Button("Back to Menu");
@@ -67,12 +68,14 @@ public class GameMenuView extends BorderPane {
     recordStatementButton.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2");
     recordStatementButton.setOnMouseEntered(e -> recordStatementButton.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
     recordStatementButton.setOnMouseExited(e -> recordStatementButton.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
-    recordStatementButton.setOnAction(e -> sceneManager.showLogging());
+    recordStatementButton.setOnAction(e -> sceneManager.showStatement());
 
 
-    Button balance = new Button("Current Balance:");
+    Button balance = new Button("Current Balance");
     balance.setFont(new Font("Cambria", 30));
     balance.setPrefSize(275, 70);
+    balance.setOnMouseEntered(e -> balance.setText("$" + Main.getAccount().getBalance()));
+    balance.setOnMouseExited(e -> balance.setText("Current Balance"));
     balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2");
     // balance.setOnMouseEntered(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
     // balance.setOnMouseExited(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
@@ -91,13 +94,12 @@ public class GameMenuView extends BorderPane {
     balanceBox.setStyle("-fx-padding: 100 0 100 0");
     
     // This is for the points button
-    Button points = new Button("Points Earned:");
+    Button points = new Button("Points Earned");
     points.setFont(new Font("Helvetica", 30));
     points.setFont(new Font("Cambria", 30));
-    //recordStatementButton.setStyle("-fx-background-color: #66d1ff89");
     points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2");
-    // points.setOnMouseEntered(e -> points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #4f43f9a7; -fx-border-width: 4"));
-    // points.setOnMouseExited(e -> points.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
+    points.setOnMouseEntered(e -> points.setText(pointsEarned + " Points"));
+    points.setOnMouseExited(e -> points.setText("Points Earned"));
     points.setPrefSize(275, 70);
     
     VBox dashboardActions = new VBox(recordStatementButton, balance, points);
