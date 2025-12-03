@@ -1,5 +1,7 @@
 package com.example;
 
+import org.netbeans.api.db.explorer.DatabaseMetaDataTransfer.Table;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -23,6 +25,11 @@ public class GameSceneManager {
 
   public Parent createLogView() {
     return new LogView(this);
+  }
+
+  // In case there is no tableData, we have a seperate one. This basically allows us to input any new data into the table
+  public Parent createLogViewWithTable(TableData newData) {
+    return new LogView(this,newData);
   }
 
   public Parent createQuestView() {
@@ -88,6 +95,11 @@ public class GameSceneManager {
   public void showLogging() {
     ensureSceneInitialized();
     scene.setRoot(createLogView());
+  }
+
+  public void showLoggingWithTable(TableData newData) {
+    ensureSceneInitialized();
+    scene.setRoot(createLogViewWithTable(newData));
   }
 
   public void showStatement() {

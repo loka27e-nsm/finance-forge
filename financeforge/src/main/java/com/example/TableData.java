@@ -1,5 +1,32 @@
 package com.example;
 
+import java.time.LocalDate;
+
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class TableData {
+
+    private final String plus;
+    private final String category;
+    private final String date;
+    private final String amount;
+
+    // This class is just where we store the data the user inputted 
+    public TableData(String plus, String category, String date, String amount) {
+        this.plus = plus;
+        this.category = category;
+        this.date = date;
+        this.amount = amount;
+    }
+
+    public String getPlus() { return plus; }
+    public String getCategory() { return category; }
+    public String getDate() { return date; }
+    public String getAmt() { return amount; }
     
 }

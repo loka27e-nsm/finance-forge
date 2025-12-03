@@ -74,8 +74,12 @@ public class LogStatement extends BorderPane {
                 String plusValue = plusInput.getValue().toString();
                 String categoryValue = categoryInput.getValue().toString();
                 String dateValue = dateInput.getText();
-                double amountValue = Double.parseDouble(amountInput.getText());
+                String amountValue = amountInput.getText();
 
+                TableData dataValues = new TableData(plusValue,categoryValue,dateValue,amountValue);
+
+                sceneManager.showLoggingWithTable(dataValues);
+                
             
             } catch (NullPointerException n) {
                 // Code if user doesn't complete the statement
