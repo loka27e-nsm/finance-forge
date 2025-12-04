@@ -3,6 +3,8 @@ package com.example;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -164,17 +166,96 @@ public class Quest extends BorderPane {
             Welcome3.setPrefSize(800, 60); 
             Welcome3.setFont(new Font("Cambria", 24));
             Welcome3.setAlignment(Pos.CENTER);
-            HBox Title3 = new HBox(Welcome3);
-            Title3.setAlignment(Pos.TOP_CENTER);
-            Title3.setSpacing(20);
+            HBox Title6 = new HBox(Welcome3);
+            Title6.setAlignment(Pos.TOP_CENTER);
+            Title6.setSpacing(20);
 
-            setTop(Title3);
+            setTop(Title6);
 
             Label instructions3 = new Label ("Answer these 3 questions correctly to get credit!");
             instructions3.setFont(new Font("Cambria", 18));
             VBox descriptionBox3 = new VBox(instructions3);
-            descriptionBox3.setAlignment(Pos.CENTER);
-            setCenter(descriptionBox3);
+            //descriptionBox3.setAlignment(Pos.CENTER);
+            //setCenter(descriptionBox3);
+            
+            Label question1 = new Label ("According to the 50/30/20 rule for budgeting, how much take home income goes towards needs?");
+            question1.setFont(new Font ("Cambria", 16));
+            RadioButton optionA1 = new RadioButton("30%");
+            RadioButton optionB1 = new RadioButton("20%");
+            RadioButton optionC1 = new RadioButton("50%");
+            RadioButton optionD1 = new RadioButton("70%");
+            ToggleGroup group1 = new ToggleGroup();
+            optionA1.setToggleGroup(group1);
+            optionB1.setToggleGroup(group1);
+            optionC1.setToggleGroup(group1);
+            optionD1.setToggleGroup(group1);
+            HBox choicesBox1 = new HBox (40, optionA1,optionB1,optionC1,optionD1);
+            choicesBox1.setAlignment(Pos.CENTER);
+
+            Label question2 = new Label ("Which of the Following is a Fixed Expense?");
+            question2.setFont(new Font ("Cambria", 16));
+            RadioButton optionA2 = new RadioButton("Rent");
+            RadioButton optionB2 = new RadioButton("Gas");
+            RadioButton optionC2 = new RadioButton("Clothing");
+            RadioButton optionD2 = new RadioButton("Food");
+            ToggleGroup group2 = new ToggleGroup();
+            optionA2.setToggleGroup(group2);
+            optionB2.setToggleGroup(group2);
+            optionC2.setToggleGroup(group2);
+            optionD2.setToggleGroup(group2);
+            HBox choicesBox2 = new HBox (40, optionA2,optionB2,optionC2,optionD2);
+            choicesBox2.setAlignment(Pos.CENTER);
+
+            Label question3 = new Label ("What is the main purpose for having a budget?");
+            question3.setFont(new Font ("Cambria", 16));
+            RadioButton optionA3 = new RadioButton("Tracking only income");
+            RadioButton optionB3 = new RadioButton("Predicting stock market returns");
+            RadioButton optionC3 = new RadioButton("Saving money");
+            RadioButton optionD3 = new RadioButton("Planning how to use your money");
+            ToggleGroup group3 = new ToggleGroup();
+            optionA3.setToggleGroup(group3);
+            optionB3.setToggleGroup(group3);
+            optionC3.setToggleGroup(group3);
+            optionD3.setToggleGroup(group3);
+
+            HBox choicesBox3 = new HBox (40, optionA3,optionB3,optionC3,optionD3);
+            choicesBox3.setAlignment(Pos.CENTER);
+
+            Button submitQuestionsButton = new Button ("Submit Your Answers");
+            submitQuestionsButton.setPrefSize(150, 40);
+            question3.setFont(new Font ("Cambria", 14));
+
+            Label accuracyLabel = new Label("");
+            accuracyLabel.setFont(new Font ("Cambria", 16));
+
+            VBox quizInformationDisplay = new VBox(instructions3,question1, choicesBox1,
+            question2, choicesBox2, question3, choicesBox3, submitQuestionsButton, accuracyLabel);
+            quizInformationDisplay.setAlignment(Pos.CENTER);
+            quizInformationDisplay.setSpacing (10);
+            
+            setCenter(quizInformationDisplay);
+
+            submitQuestionsButton.setOnAction(e -> {
+                int correctAnswerCount = 0;
+                if (group1.getSelectedToggle () == optionC1) {
+                    correctAnswerCount++;
+                }
+                if (group2.getSelectedToggle () == optionA2) {
+                    correctAnswerCount++;
+                }
+                if (group3.getSelectedToggle () == optionD3) {
+                    correctAnswerCount++;
+                }
+                if (correctAnswerCount == 3){
+                    accuracyLabel.setText ("Great Job, You got all questions right! 3/3! Now apply these answers in your personal finance journey!");
+                    accuracyLabel.setStyle("-fx-text-fill: green;");
+                    submitQuestionsButton.setDisable(true);
+                }
+                else{
+                    accuracyLabel.setText ("You have" +correctAnswerCount+"/3 Correct. Keep trying, you are almost there!");
+                }
+            });
+
 
             Button backQuestButton5 = new Button("Back to Quests");
             backQuestButton5.setPrefSize(150, 40);
