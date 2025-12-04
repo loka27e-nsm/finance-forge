@@ -1,6 +1,6 @@
 package com.example;
 
-import org.netbeans.api.db.explorer.DatabaseMetaDataTransfer.Table;
+// import org.netbeans.api.db.explorer.DatabaseMetaDataTransfer.Table;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;

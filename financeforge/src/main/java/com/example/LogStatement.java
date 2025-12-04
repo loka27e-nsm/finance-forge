@@ -1,20 +1,26 @@
 package com.example;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-// Import
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
-import javafx.scene.control.Button;
+import javafx.animation.PauseTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ComboBox;
+import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 
 public class LogStatement extends BorderPane {
+
+    private static boolean quest1Finish;
+    private static boolean quest2Finish;
+
+    public static boolean getQuest1Finish() {return quest1Finish;}
+    public static boolean getQuest2Finish() {return quest2Finish;}
 
     public LogStatement(GameSceneManager sceneManager) {
         
@@ -34,9 +40,18 @@ public class LogStatement extends BorderPane {
         categoryBox.setSpacing(10);
 
         Label dateLabel = new Label("Date (M/D/Y):");
-        TextField dateInput = new TextField();
-        //dateInput.getItems().addAll("Food","Transportation","Utilities","Entertainment","Clothing","Miscellaneous", "Paycheck", "Gift", "Bonus");
-        HBox dateBox = new HBox(dateLabel, dateInput);
+        // TextField dateInput = new TextField();
+        ComboBox dateInput = new ComboBox();
+        dateInput.getItems().addAll("1","2","3","4","5","6","7","8","9","10","11","12");
+        Label slash1 = new Label("/");
+        ComboBox dayInput = new ComboBox();
+        dayInput.getItems().addAll("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30");
+        Label slash2 = new Label("/");
+        ComboBox yearInput = new ComboBox();
+        yearInput.getItems().addAll("Later","2030","2029","2028","2027","2026","2025","2024","2023","2022","2021","2020","2019","2018","2017","2016","2015","2014","2013","2012","2011","2010","Earlier");
+
+
+        HBox dateBox = new HBox(dateLabel, dateInput, slash1,dayInput, slash2, yearInput);
         dateBox.setAlignment(Pos.CENTER);
         dateBox.setSpacing(10);
 
@@ -73,16 +88,43 @@ public class LogStatement extends BorderPane {
                 // Values for user inputs
                 String plusValue = plusInput.getValue().toString();
                 String categoryValue = categoryInput.getValue().toString();
-                String dateValue = dateInput.getText();
+                String dateValue = dateInput.getValue().toString();
+                String dayValue = dayInput.getValue().toString();
+                String yearValue = yearInput.getValue().toString();
                 String amountValue = amountInput.getText();
 
-                TableData dataValues = new TableData(plusValue,categoryValue,dateValue,amountValue);
+                String dateFinal = dateValue + "/" + dayValue + "/" + yearValue;
+
+                TableData dataValues = new TableData(plusValue,categoryValue,dateFinal,amountValue);
+
+                if (plusValue.equals("+")) {
+                    Main.getAccount().addToBalance(Double.parseDouble(amountValue));
+                    if (quest1Finish == false) {
+                        quest1Finish = true;
+                        GameMenuView.addProgress(25);
+                        GameMenuView.addPoints(25);
+                    }
+                } else if (plusValue.equals("-")) {
+                    Main.getAccount().removeFromBalance(Double.parseDouble(amountValue));
+                    if (quest2Finish == false) {
+                        quest2Finish = true;
+                        GameMenuView.addProgress(30);
+                        GameMenuView.addPoints(30);
+                    }
+                }
 
                 sceneManager.showLoggingWithTable(dataValues);
                 
+                
             
-            } catch (NullPointerException n) {
-                // Code if user doesn't complete the statement
+            } catch (Exception n) {
+                submitButton.setText("Error");
+                PauseTransition pause = new PauseTransition(Duration.seconds(1));
+
+                pause.setOnFinished(a -> submitButton.setText("Submit"));
+
+                pause.play();
+                
             }
         }); 
 
@@ -97,4 +139,6 @@ public class LogStatement extends BorderPane {
         
         
     }
+
+    
 }

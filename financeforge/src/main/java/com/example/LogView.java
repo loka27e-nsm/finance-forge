@@ -1,18 +1,18 @@
 package com.example;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.collections.ObservableList;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.control.Label;
 
 public class LogView extends BorderPane{
     
@@ -123,6 +123,10 @@ public class LogView extends BorderPane{
     setCenter(tableBox);
     }
 
+    public static ObservableList<TableData> getData(){
+        return data;
+    }
+
     public LogView(GameSceneManager sceneManager){
         // Top bar with a "Back to Menu" button
     Button backButton = new Button("Back to Menu");
@@ -180,7 +184,6 @@ public class LogView extends BorderPane{
     TableView<TableData> table = new TableView<>();
     table.setEditable(true);
     table.setPlaceholder(new Label("No data collected"));
-    ObservableList<TableData> data = FXCollections.observableArrayList();
 
     TableColumn changeCol = new TableColumn("(+/-)");
     changeCol.setMinWidth(80);
@@ -209,7 +212,7 @@ public class LogView extends BorderPane{
     dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
     amtCol.setCellValueFactory(new PropertyValueFactory<>("amt"));
 
-    table.setItems(data);
+    table.setItems(data); 
 
 
     VBox tableBox = new VBox(table);

@@ -16,8 +16,8 @@ import javafx.scene.text.Font;
 
 public class GameMenuView extends BorderPane {
 
-  static int pointsEarned = 0;
-  static int progressPercent; 
+  private static int pointsEarned = 0;
+  private static int progressPercent = 0; 
 
   public GameMenuView(GameSceneManager sceneManager) {
     // Top bar with a "Back to Menu" button
@@ -81,12 +81,51 @@ public class GameMenuView extends BorderPane {
     // balance.setOnMouseExited(e -> balance.setStyle("-fx-background-color: linear-gradient(#66d1ffd7, #3cb3e6d7); -fx-border-color: #669cff89; -fx-border-width: 2"));
     
     // This whole thing is for the creation of the chart
+    // dateInput.getItems().addAll("Food","Transportation","Utilities","Entertainment","Clothing","Miscellaneous", "Paycheck", "Gift", "Bonus");
+
+    double foodPercent = 0;
+    double transportationPercent = 0;
+    double utilitiesPercent = 0;
+    double entertainmentPercent = 0;
+    double clothingPercent = 0;
+    double miscellaneousPercent = 0;
+    double paycheckPercent = 0;
+    double giftPercent = 0;
+    double bonusPercent = 0;
+
+    try {
+      for (TableData currentData: LogView.getData()) {
+        if(currentData.getPlus().equals("-")){
+          if (currentData.getCategory().equals("Food")) {foodPercent += Double.parseDouble(currentData.getAmt());}
+          if (currentData.getCategory().equals("Transportation")) {transportationPercent += Double.parseDouble(currentData.getAmt());}
+          if (currentData.getCategory().equals("Utilities")) {utilitiesPercent += Double.parseDouble(currentData.getAmt());}
+          if (currentData.getCategory().equals("Entertainment")) {entertainmentPercent += Double.parseDouble(currentData.getAmt());}
+          if (currentData.getCategory().equals("Clothing")) {clothingPercent += Double.parseDouble(currentData.getAmt());}
+          if (currentData.getCategory().equals("Miscellaneous")) {miscellaneousPercent += Double.parseDouble(currentData.getAmt());}
+          if (currentData.getCategory().equals("Paycheck")) {paycheckPercent += Double.parseDouble(currentData.getAmt());}
+          if (currentData.getCategory().equals("Gift")) {giftPercent += Double.parseDouble(currentData.getAmt());}
+          if (currentData.getCategory().equals("Bonus")) {bonusPercent += Double.parseDouble(currentData.getAmt());}
+        }
+        }
+    } catch (Exception e) {
+
+    }
+
     ObservableList<PieChart.Data> pieChartData =
       FXCollections.observableArrayList(
+          new PieChart.Data("Food", foodPercent),
+          new PieChart.Data("Transportation", transportationPercent),
+          new PieChart.Data("Utilities", utilitiesPercent),
+          new PieChart.Data("Entertainment", entertainmentPercent),
+          new PieChart.Data("Clothing", clothingPercent),
+          new PieChart.Data("Miscellaneous", miscellaneousPercent)
       );
+    
     final PieChart budgetChart = new PieChart(pieChartData);
     budgetChart.setPrefSize(400,600);
-    Label chartLabel = new Label("Budget Visual");
+
+
+    Label chartLabel = new Label("Expenses Visual");
     chartLabel.setStyle("-fx-padding: 0 160 0 0");
     chartLabel.setFont(new Font("Cambria", 18));
     VBox balanceBox = new VBox(chartLabel, budgetChart);
@@ -105,10 +144,9 @@ public class GameMenuView extends BorderPane {
     VBox dashboardActions = new VBox(recordStatementButton, balance, points);
     dashboardActions.setAlignment(Pos.CENTER_LEFT);
     dashboardActions.setStyle("-fx-padding: 0 0 0 40;");
-    dashboardActions.setSpacing(50);
+    dashboardActions.setSpacing(50); 
     
-    progressPercent = 0;
-    ProgressBar questBar = new ProgressBar(progressPercent/100.0);
+    ProgressBar questBar = new ProgressBar(progressPercent/535.0);
     questBar.setPrefWidth(560);
     questBar.setStyle("-fx-accent: #ee0d0db7; -fx-border-color: #1ccf3aff; -fx-border-width: 1");
     
@@ -122,11 +160,21 @@ public class GameMenuView extends BorderPane {
     
     setTop(navButtons);
     setCenter(dashboardActions);
-    if (!budgetChart.getData().isEmpty()) {setRight(balanceBox);}
+    if (!(foodPercent == 0 & transportationPercent == 0 & utilitiesPercent == 0 &
+        entertainmentPercent == 0 & clothingPercent == 0 & miscellaneousPercent == 0 &
+        paycheckPercent == 0 & giftPercent == 0 & bonusPercent == 0)) {setRight(balanceBox);}
     setBottom(questBox);
 
 
     
+}
+
+public static void addPoints(int n){
+  pointsEarned += n;
+}
+
+public static void addProgress(int n){
+  progressPercent += n;
 }
 
 }

@@ -58,12 +58,16 @@ public class QuestView extends BorderPane{
     but1.setPrefSize(100, 100); 
     but1.setFont(new Font("Cambria", 16));
     but1.setStyle("-fx-background-color: #19ec3fc3; -fx-border-color: #1b6832be; -fx-border-width: 2");
-    but1.setOnAction(e -> sceneManager.showQuest1());
+    but1.setOnAction(e -> {
+        if (LogStatement.getQuest1Finish() == false)
+            sceneManager.showQuest1();});
     Button but2 = new Button("2");
     but2.setPrefSize(100, 100); 
     but2.setFont(new Font("Cambria", 16));
     but2.setStyle("-fx-background-color: #19ec78c3; -fx-border-color: #1b6839d4; -fx-border-width: 2");
-    but2.setOnAction(e -> sceneManager.showQuest2());
+    but2.setOnAction(e -> {
+        if (LogStatement.getQuest2Finish() == false)
+            sceneManager.showQuest2();});
     Button but3 = new Button("3");
     but3.setPrefSize(100, 100); 
     but3.setFont(new Font("Cambria", 16));
@@ -133,5 +137,6 @@ public class QuestView extends BorderPane{
     //     Test.setAlignment(Pos.CENTER);
     //     Test.setSpacing(20);
     // }
+    
 }
 
