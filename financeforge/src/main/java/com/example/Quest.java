@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -13,6 +14,7 @@ import javafx.scene.text.Font;
 public class Quest extends BorderPane {
 
     static boolean Quest6Finish = false;
+    static boolean Quest7Finish = false;
     
     public Quest(GameSceneManager sceneManager, int questNum){
         
@@ -254,7 +256,7 @@ public class Quest extends BorderPane {
                     submitQuestionsButton.setDisable(true);
                 }
                 else{
-                    accuracyLabel.setText ("You have" +correctAnswerCount+"/3 Correct. Keep trying, you are almost there!");
+                    accuracyLabel.setText ("You have " +correctAnswerCount+"/3 Correct. Keep trying, you are almost there!");
                 }
             });
 
@@ -285,7 +287,41 @@ public class Quest extends BorderPane {
 
             Label instructions7 = new Label ("Now that you a bit about budgeting, set a budgeting goal for yourself!");
             instructions7.setFont(new Font("Cambria", 18));
-            VBox descriptionBox7 = new VBox(instructions7);
+
+            Label budgetingLabel = new Label("Set Max Budget: $");
+            TextField budgetAmountInput = new TextField();
+            budgetAmountInput.setMaxWidth(250);
+
+            Button setGoalButton = new Button("Set Your Goal");
+            setGoalButton.setPrefSize(150, 25);
+
+            Label errorLabel = new Label("");
+            errorLabel.setFont(new Font("Cambria", 14));
+
+            HBox budgetGoals = new HBox(10, budgetingLabel,budgetAmountInput,setGoalButton);
+            budgetGoals.setAlignment(Pos.CENTER);
+
+            setGoalButton.setOnAction(e -> {
+                try {
+                    double newBudgetGoal = Double.parseDouble(budgetAmountInput.getText());
+                    if (newBudgetGoal>0){
+                        Main.getAccount().getBudget().changeBudget(newBudgetGoal);
+                        GameMenuView.addProgress(60);
+                        GameMenuView.addPoints(60);
+
+                        errorLabel.setText("You successfully set your budget to $" + newBudgetGoal +"! Quest 7 is now complete!");
+                        errorLabel.setStyle("-fx-text-fill: green;");
+                        setGoalButton.setDisable(true);
+                        budgetAmountInput.setDisable(true);
+                        Quest.Quest7Finish = true;
+                        //public static boolean getQuest7Finish() {return quest7Finish;};
+                    }
+                } catch (NumberFormatException ex) {
+                    errorLabel.setText("Invalid Input for goal. Please provide a valid amount.");
+                }
+            });
+
+            VBox descriptionBox7 = new VBox(20, instructions7, budgetGoals, errorLabel);
             descriptionBox7.setAlignment(Pos.CENTER);
             setCenter(descriptionBox7);
 
@@ -361,15 +397,15 @@ public class Quest extends BorderPane {
             setBottom(questButtons);
         }
         if (questNum == 10) {
-            Label Welcome3 = new Label("Welcome to Quest 10: Final Challenge! (100 points)");
-            Welcome3.setPrefSize(800, 60); 
-            Welcome3.setFont(new Font("Cambria", 24));
-            Welcome3.setAlignment(Pos.CENTER);
-            HBox Title6 = new HBox(Welcome3);
-            Title6.setAlignment(Pos.TOP_CENTER);
-            Title6.setSpacing(20);
+            Label Welcome10 = new Label("Welcome to Quest 10: Final Challenge! (100 points)");
+            Welcome10.setPrefSize(800, 60); 
+            Welcome10.setFont(new Font("Cambria", 24));
+            Welcome10.setAlignment(Pos.CENTER);
+            HBox Title10 = new HBox(Welcome10);
+            Title10.setAlignment(Pos.TOP_CENTER);
+            Title10.setSpacing(20);
 
-            setTop(Title6);
+            setTop(Title10);
 
             Label instructions3 = new Label ("Answer these 8 questions correctly to get credit!");
             instructions3.setFont(new Font("Cambria", 18));
@@ -378,7 +414,7 @@ public class Quest extends BorderPane {
             //setCenter(descriptionBox3);
             
             Label question1 = new Label ("Your monthly income is $4000. You aim to save 24%. What is the most you can spend?");
-            question1.setFont(new Font ("Cambria", 16));
+            question1.setFont(new Font ("Cambria", 14));
             RadioButton optionA1 = new RadioButton("$3000");
             RadioButton optionB1 = new RadioButton("$1000");
             RadioButton optionC1 = new RadioButton("$1040");
@@ -392,7 +428,7 @@ public class Quest extends BorderPane {
             choicesBox1.setAlignment(Pos.CENTER);
 
             Label question2 = new Label ("You had budgeted $60 for transportation. $39 has been spent. What percent remains?");
-            question2.setFont(new Font ("Cambria", 16));
+            question2.setFont(new Font ("Cambria", 14));
             RadioButton optionA2 = new RadioButton("65%");
             RadioButton optionB2 = new RadioButton("35%");
             RadioButton optionC2 = new RadioButton("71%");
@@ -405,12 +441,12 @@ public class Quest extends BorderPane {
             HBox choicesBox2 = new HBox (40, optionA2,optionB2,optionC2,optionD2);
             choicesBox2.setAlignment(Pos.CENTER);
 
-            Label question3 = new Label ("What is the main purpose for having a budget?");
-            question3.setFont(new Font ("Cambria", 16));
-            RadioButton optionA3 = new RadioButton("Tracking only income");
-            RadioButton optionB3 = new RadioButton("Predicting stock market returns");
-            RadioButton optionC3 = new RadioButton("Saving money");
-            RadioButton optionD3 = new RadioButton("Planning how to use your money");
+            Label question3 = new Label ("Which of the following is a variable expense?");
+            question3.setFont(new Font ("Cambria", 14));
+            RadioButton optionA3 = new RadioButton("Rent");
+            RadioButton optionB3 = new RadioButton("Phone Bills");
+            RadioButton optionC3 = new RadioButton("Groceries");
+            RadioButton optionD3 = new RadioButton("College Tuition");
             ToggleGroup group3 = new ToggleGroup();
             optionA3.setToggleGroup(group3);
             optionB3.setToggleGroup(group3);
@@ -420,6 +456,80 @@ public class Quest extends BorderPane {
             HBox choicesBox3 = new HBox (40, optionA3,optionB3,optionC3,optionD3);
             choicesBox3.setAlignment(Pos.CENTER);
 
+            Label question4 = new Label ("You want $500 in savings in 5 months. So far, you have $180 saved. How much per month saving to stay on track?");
+            question4.setFont(new Font ("Cambria", 14));
+            RadioButton optionA4 = new RadioButton("$64");
+            RadioButton optionB4 = new RadioButton("$80");
+            RadioButton optionC4 = new RadioButton("$72");
+            RadioButton optionD4 = new RadioButton("$100");
+            ToggleGroup group4 = new ToggleGroup();
+            optionA4.setToggleGroup(group4);
+            optionB4.setToggleGroup(group4);
+            optionC4.setToggleGroup(group4);
+            optionD4.setToggleGroup(group4);
+
+            HBox choicesBox4 = new HBox (40, optionA4,optionB4,optionC4,optionD4);
+            choicesBox4.setAlignment(Pos.CENTER);
+
+            
+            Label question5 = new Label ("A balanced budget means which of the following?");
+            question5.setFont(new Font ("Cambria", 14));
+            RadioButton optionA5 = new RadioButton("Spending = Income");
+            RadioButton optionB5 = new RadioButton("Savings > Income");
+            RadioButton optionC5 = new RadioButton("Spending < Income");
+            RadioButton optionD5 = new RadioButton("Income < Expenses");
+            ToggleGroup group5 = new ToggleGroup();
+            optionA5.setToggleGroup(group5);
+            optionB5.setToggleGroup(group5);
+            optionC5.setToggleGroup(group5);
+            optionD5.setToggleGroup(group5);
+            HBox choicesBox5 = new HBox (40, optionA5,optionB5,optionC5,optionD5);
+            choicesBox5.setAlignment(Pos.CENTER);
+
+            Label question6 = new Label ("You track weekly expenses. If one week is $82, the next is $68, and the third is $78, what is your average weekly spending?");
+            question6.setFont(new Font ("Cambria", 14));
+            RadioButton optionA6 = new RadioButton("$70");
+            RadioButton optionB6 = new RadioButton("$72");
+            RadioButton optionC6 = new RadioButton("$76");
+            RadioButton optionD6 = new RadioButton("$74");
+            ToggleGroup group6 = new ToggleGroup();
+            optionA6.setToggleGroup(group6);
+            optionB6.setToggleGroup(group6);
+            optionC6.setToggleGroup(group6);
+            optionD6.setToggleGroup(group6);
+            HBox choicesBox6 = new HBox (40, optionA6,optionB6,optionC6,optionD6);
+            choicesBox6.setAlignment(Pos.CENTER);
+
+            Label question7 = new Label ("What is the best reason to categorize your expenses?");
+            question7.setFont(new Font ("Cambria", 14));
+            RadioButton optionA7 = new RadioButton("Looks Interesting");
+            RadioButton optionB7 = new RadioButton("Helps Spot Overspending");
+            RadioButton optionC7 = new RadioButton("Reduces Taxes");
+            RadioButton optionD7 = new RadioButton("Raises Income");
+            ToggleGroup group7 = new ToggleGroup();
+            optionA7.setToggleGroup(group7);
+            optionB7.setToggleGroup(group7);
+            optionC7.setToggleGroup(group7);
+            optionD7.setToggleGroup(group7);
+
+            HBox choicesBox7 = new HBox (40, optionA7,optionB7,optionC7,optionD7);
+            choicesBox7.setAlignment(Pos.CENTER);
+
+            Label question8 = new Label ("You have saved 18% of your $350 goal so far. How much have you saved in dollars?");
+            question8.setFont(new Font ("Cambria", 14));
+            RadioButton optionA8 = new RadioButton("$61");
+            RadioButton optionB8 = new RadioButton("$63");
+            RadioButton optionC8 = new RadioButton("$64");
+            RadioButton optionD8 = new RadioButton("$68");
+            ToggleGroup group8 = new ToggleGroup();
+            optionA8.setToggleGroup(group8);
+            optionB8.setToggleGroup(group8);
+            optionC8.setToggleGroup(group8);
+            optionD8.setToggleGroup(group8);
+
+            HBox choicesBox8 = new HBox (40, optionA8,optionB8,optionC8,optionD8);
+            choicesBox8.setAlignment(Pos.CENTER);
+
             Button submitQuestionsButton = new Button ("Submit Your Answers");
             submitQuestionsButton.setPrefSize(150, 40);
             question3.setFont(new Font ("Cambria", 14));
@@ -428,40 +538,58 @@ public class Quest extends BorderPane {
             accuracyLabel.setFont(new Font ("Cambria", 16));
 
             VBox quizInformationDisplay = new VBox(instructions3,question1, choicesBox1,
-            question2, choicesBox2, question3, choicesBox3, submitQuestionsButton, accuracyLabel);
+            question2, choicesBox2, question3, choicesBox3, question4, choicesBox4,question5, choicesBox5, 
+            question6, choicesBox6, question7, choicesBox7, question8, choicesBox8,submitQuestionsButton, accuracyLabel);
             quizInformationDisplay.setAlignment(Pos.CENTER);
-            quizInformationDisplay.setSpacing (10);
+            quizInformationDisplay.setSpacing (8);
             
             setCenter(quizInformationDisplay);
 
             submitQuestionsButton.setOnAction(e -> {
                 int correctAnswerCount = 0;
-                if (group1.getSelectedToggle () == optionC1) {
+                if (group1.getSelectedToggle () == optionD1) {
                     correctAnswerCount++;
                 }
-                if (group2.getSelectedToggle () == optionA2) {
+                if (group2.getSelectedToggle () == optionB2) {
                     correctAnswerCount++;
                 }
-                if (group3.getSelectedToggle () == optionD3) {
+                if (group3.getSelectedToggle () == optionC3) {
                     correctAnswerCount++;
                 }
-                if (correctAnswerCount == 3){
-                    accuracyLabel.setText ("Great Job, You got all questions right! 3/3! Now apply these answers in your personal finance journey!");
+                if (group4.getSelectedToggle () == optionA4) {
+                    correctAnswerCount++;
+                }
+                if (group5.getSelectedToggle () == optionA5) {
+                    correctAnswerCount++;
+                }
+                if (group6.getSelectedToggle () == optionC6) {
+                    correctAnswerCount++;
+                }
+                if (group7.getSelectedToggle () == optionB7) {
+                    correctAnswerCount++;
+                }
+                if (group8.getSelectedToggle () == optionB8) {
+                    correctAnswerCount++;
+                }
+
+                if (correctAnswerCount == 8){
+                    accuracyLabel.setText ("Fantastic, You got all questions right! 8/8! Remember to apply these lessons managing your finances!");
                     accuracyLabel.setStyle("-fx-text-fill: green;");
                     submitQuestionsButton.setDisable(true);
                 }
                 else{
-                    accuracyLabel.setText ("You have" +correctAnswerCount+"/3 Correct. Keep trying, you are almost there!");
+                    accuracyLabel.setText ("You have " +correctAnswerCount+"/8 Correct. Keep trying, you are almost there!");
                 }
             });
 
-            Button backQuestButton9 = new Button("Back to Quests");
-            backQuestButton9.setPrefSize(150, 40);
-            backQuestButton9.setFont(new Font("Cambria", 14));
-            backQuestButton9.setOnAction(e -> sceneManager.showQuest());
-            HBox questButtons = new HBox(backQuestButton9);
+            Button backQuestButton10 = new Button("Back to Quests");
+            backQuestButton10.setPrefSize(150, 40);
+            backQuestButton10.setFont(new Font("Cambria", 14));
+            backQuestButton10.setOnAction(e -> sceneManager.showQuest());
+            HBox questButtons = new HBox(backQuestButton10);
             questButtons.setAlignment(Pos.CENTER_LEFT);
             questButtons.setSpacing(10);
+            //questButtons.setPadding(new Insets(0,0,100,0));
 
 
             setBottom(questButtons);
