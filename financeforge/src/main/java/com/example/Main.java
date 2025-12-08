@@ -7,7 +7,7 @@ public class Main extends Application {
 
     private Scene scene;
     private GameSceneManager sceneManager;
-    private final static BankAccount userAccount = new BankAccount("User", 1000.00);
+    private final static BankAccount userAccount = new BankAccount("User", 3000.00);
 
     @Override
     public void start(Stage startStage) {

@@ -72,7 +72,11 @@ public class QuestView extends BorderPane{
     but3.setPrefSize(100, 100); 
     but3.setFont(new Font("Cambria", 16));
     but3.setStyle("-fx-background-color: #19ec98c3; -fx-border-color: #1b6847da; -fx-border-width: 2");
-    but3.setOnAction(e -> sceneManager.showQuest3());
+    but3.setOnAction(e -> {
+        if (LogView.quest3Finish == false){
+            sceneManager.showQuest3();
+        }
+    });
     Button but4 = new Button("4");
     but4.setPrefSize(100, 100); 
     but4.setFont(new Font("Cambria", 16));
