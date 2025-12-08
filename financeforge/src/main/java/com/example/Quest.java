@@ -13,9 +13,20 @@ import javafx.scene.text.Font;
 
 public class Quest extends BorderPane {
 
-    static boolean Quest6Finish = false;
+    //static boolean Quest6Finish = false;
     static boolean Quest7Finish = false;
+    private static boolean quest6Finish = false;
+
+    public static boolean getQuest6Finish() {
+        return quest6Finish;
+    }
     
+    private static boolean quest10Finish = false;
+    
+    public static boolean getQuest10Finish() {
+        return quest10Finish;
+    }
+
     public Quest(GameSceneManager sceneManager, int questNum){
         
         if (questNum == 1) {
@@ -254,6 +265,11 @@ public class Quest extends BorderPane {
                     accuracyLabel.setText ("Great Job, You got all questions right! 3/3! Now apply these answers in your personal finance journey!");
                     accuracyLabel.setStyle("-fx-text-fill: green;");
                     submitQuestionsButton.setDisable(true);
+                    if (quest6Finish == false) {
+                        quest6Finish = true;
+                        GameMenuView.addProgress(50);
+                        GameMenuView.addPoints(50);
+                    }
                 }
                 else{
                     accuracyLabel.setText ("You have " +correctAnswerCount+"/3 Correct. Keep trying, you are almost there!");
@@ -576,6 +592,11 @@ public class Quest extends BorderPane {
                     accuracyLabel.setText ("Fantastic, You got all questions right! 8/8! Remember to apply these lessons managing your finances!");
                     accuracyLabel.setStyle("-fx-text-fill: green;");
                     submitQuestionsButton.setDisable(true);
+                    if (quest10Finish == false) {
+                        quest10Finish = true;
+                        GameMenuView.addProgress(100);
+                        GameMenuView.addPoints(100);
+                    }
                 }
                 else{
                     accuracyLabel.setText ("You have " +correctAnswerCount+"/8 Correct. Keep trying, you are almost there!");
