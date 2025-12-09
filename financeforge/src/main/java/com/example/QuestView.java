@@ -81,12 +81,21 @@ public class QuestView extends BorderPane{
     but4.setPrefSize(100, 100); 
     but4.setFont(new Font("Cambria", 16));
     but4.setStyle("-fx-background-color: #19ecc2c3; -fx-border-color: #1b6855da; -fx-border-width: 2");
-    but4.setOnAction(e -> sceneManager.showQuest4());
+    but4.setOnAction(e -> {
+        if (LogView.getQuest4Finish() == false){
+            sceneManager.showQuest4();
+        }
+    });
     Button but5 = new Button("5");
     but5.setPrefSize(100, 100); 
     but5.setFont(new Font("Cambria", 16));
     but5.setStyle("-fx-background-color: #19e8ecc3; -fx-border-color: #1b6768e1; -fx-border-width: 2");
     but5.setOnAction(e -> sceneManager.showQuest5());
+    but5.setOnAction(e -> {
+        if (LogView.getQuest5Finish() == false){
+            sceneManager.showQuest5();
+        }
+    });
     Button but6 = new Button("6");
     but6.setPrefSize(100, 100); 
     but6.setFont(new Font("Cambria", 16));
@@ -111,12 +120,20 @@ public class QuestView extends BorderPane{
     but8.setPrefSize(100, 100); 
     but8.setFont(new Font("Cambria", 16));
     but8.setStyle("-fx-background-color: #1990ecc3; -fx-border-color: #1b4968df; -fx-border-width: 2");
-    but8.setOnAction(e -> sceneManager.showQuest8());
+    but8.setOnAction(e -> {
+        if (Quest.getQuest6Finish()== false){
+            sceneManager.showQuest8();
+        }
+    });
     Button but9 = new Button("9");
     but9.setPrefSize(100, 100); 
     but9.setFont(new Font("Cambria", 16));
     but9.setStyle("-fx-background-color: #2887f4c3; -fx-border-color: #172b57da; -fx-border-width: 2");
-    but9.setOnAction(e -> sceneManager.showQuest9());
+    but9.setOnAction(e -> {
+        if (Quest.getQuest9Finish() == false){
+            sceneManager.showQuest9();
+        }
+    });
     Button but10 = new Button("10");
     but10.setPrefSize(100, 100); 
     but10.setFont(new Font("Cambria", 16));

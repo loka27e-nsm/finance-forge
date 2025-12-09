@@ -17,9 +17,17 @@ import javafx.scene.text.Font;
 public class LogView extends BorderPane{
     
     static boolean quest3Finish = false;
+    //static boolean quest8Finish = false;
+    static int q3Final;
     
     private static boolean quest4Finish = false;
     public static boolean getQuest4Finish() {return quest4Finish;};
+
+    private static boolean quest5Finish = false;
+    public static boolean getQuest5Finish() {return quest5Finish;};
+
+    private static boolean quest8Finish = false;
+    public static boolean getQuest8Finish() {return quest8Finish;};
 
     private static ObservableList<TableData> data = FXCollections.observableArrayList();
 
@@ -121,25 +129,55 @@ public class LogView extends BorderPane{
     
 
     // Ensuring quest1 and quest2 done before it starts counting the food
+    quest1Check = false;
+    quest2Check = false;
+    foodCount = 0;
     for(int x = 0; x < data.size(); x++){
         // Checking if there is an income source logged to confirm quest 1
         if (data.get(x).getPlus().equals("+")) {
             quest1Check = true;
+            // System.out.println("--------------------------------------\nQuest 1 done");
         } else if (data.get(x).getPlus().equals("-")) {
             quest2Check = true;
+            // System.out.println("Quest 2 done");
         }
 
         // q3GoToCount is the place after quest 1 and 2 is done, and is when we starting counting food for quest 3
-        if (quest1Check && quest2Check) {q3goToCount = x;}
-        if (quest1Check && quest2Check && quest3Check) {q4goToCount = x;}
+        if (quest1Check && quest2Check) {q3goToCount = x+1;break;}
+        // if (quest1Check && quest2Check && foodCount >=3) {q4goToCount = x+1;break;}
     }
 
+    for(int x = 0; x < data.size(); x++){
+        // Checking if there is an income source logged to confirm quest 1
+        if (data.get(x).getPlus().equals("+")) {
+            quest1Check = true;
+            // System.out.println("--------------------------------------\nQuest 1 done");
+        } else if (data.get(x).getPlus().equals("-")) {
+            quest2Check = true;
+            // System.out.println("Quest 2 done");
+        } 
+        if (data.get(x).getCategory().equals("Food") && x >= q3Final && q3Final != 0) {
+            foodCount += 1;
+            
+        }
+        System.out.println(foodCount + " food logged");
+
+        // q3GoToCount is the place after quest 1 and 2 is done, and is when we starting counting food for quest 3
+        // if (quest1Check && quest2Check) {q3goToCount = x+1;break;}
+        if (quest1Check && quest2Check && foodCount >=3) {q4goToCount = x+1;break;}
+    }
+
+    
+
     // Quest 3-- checking out how many entries of "food" are there
-    if (checkQuest3(q3goToCount, data) == 3) {
+    System.out.println(q3goToCount + " is q3goToCount");
+    if (checkFoodCount(q3goToCount, data) == 3 && q3goToCount > 0) {
         if (quest3Finish == false) {
             quest3Finish = true;
             GameMenuView.addProgress(40);
             GameMenuView.addPoints(40);
+            q3Final = q3goToCount;
+            System.out.println(q3Final + " is q3Final");
         }
     }
     
@@ -149,22 +187,48 @@ public class LogView extends BorderPane{
     // ArrayList<String> usedCats = new ArrayList<String>();
 
     // TableData is a row (list) -- contains values for the four columns for each row.
-    for (TableData row:data){
+    for (int i = q4goToCount; i < data.size(); i++){
         // copy + paste in the for loop 
-        if (row.getPlus().equals("-")) {
+        if (data.get(i).getPlus().equals("-")) {
             expenseCount++;
             
         }
     }
 
-    // check if we have the 5 separate expenses required. 
-    if (expenseCount == 5){
+    // check if we have the 5 seperate expenses required.
+    System.out.println(q4goToCount + " is q4goToCount");
+    if (expenseCount == 5 && q4goToCount > 0){
         if (quest4Finish == false) {
             quest4Finish = true;
-            GameMenuView.addProgress(50);
-            GameMenuView.addPoints(50);
+            GameMenuView.addProgress(45);
+            GameMenuView.addPoints(45);
         }
     }
+
+    //Quest 5: Transportation expenses greater than $400
+    double transportationCost = 0.0;
+    for (TableData row:data){
+        if (row.getPlus().equals("-") && row.getCategory().equals("Transportation")){
+            transportationCost += Double.parseDouble(row.getAmt());
+
+        }
+    }
+
+    
+    if(!quest5Finish && transportationCost >= 400.0){
+        quest5Finish = true;
+        GameMenuView.addProgress(50);
+        GameMenuView.addPoints(50);
+    }
+
+
+    // Quest 8: 8+ total transactions and total balance of 1100
+    if (LogStatement.totalTransactions >= 8 && Main.getAccount().getBalance() == 1100 && !quest8Finish) {
+        quest8Finish = true;
+        GameMenuView.addPoints(80);
+        GameMenuView.addProgress(80);
+    }
+
     
     // the propertyValueFactory uses a getProperty (if property was "plus", it would be getPlus())
     // Allows us to properly set each value in their correct column
@@ -293,20 +357,16 @@ public class LogView extends BorderPane{
         setCenter(tableBox);
     }
 
-    public static int checkQuest3(int q3goToCount, ObservableList<TableData> data) {
+    public static int checkFoodCount(int q3goToCount, ObservableList<TableData> data) {
         int foodCount = 0;
-        if (q3goToCount != 0) {
-            for (TableData a:data) {
-                if (a.getCategory().equals("Food")) {
-                    if(data.indexOf(a) >= q3goToCount)
-                        foodCount += 1;
-                }
+        for (int i = q3goToCount; i < data.size(); i++) {
+            if (data.get(i).getCategory().equals("Food")) {
+                foodCount++;
             }
-        }
+}
+        
         return foodCount;
     }
     
-    public static int checkQuest4(int q4goToCount, ObservableList<TableData> data) {
-        return 1;
-    }
+    
 }
