@@ -8,7 +8,7 @@ Welcome to the Finance Forge, a gamified financial tracker that turns personal b
 - Users can browse quests
 - Users can set budget goals (ie. save $200 by end of month)
 - Users can track their progress in goals
-- The program outputs a message based on user dollar input (ie. lets user know its over budget)
+- The program outputs a message based on user dollar input-- slightly modified. Instead of a message, we have a table that updates
 - Users log in revenue (salary, wage, paycheck,grant, etc.)
 - A dashboard showing the above to make the experience appealing
 - The program ensures valid inputs to ensure it functions correctly
