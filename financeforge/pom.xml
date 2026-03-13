@@ -20,5 +20,17 @@
       <artifactId>util-log-ui</artifactId>
       <version>0.0.1</version>
     </dependency>
+
+    <!-- JavaFX modules -->
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>25.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>25.0.2</version>
+    </dependency>
   </dependencies>
 </project>

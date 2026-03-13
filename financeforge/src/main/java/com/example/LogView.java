@@ -6,12 +6,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class LogView extends BorderPane{
@@ -91,28 +93,32 @@ public class LogView extends BorderPane{
     
 
     TableColumn changeCol = new TableColumn("(+/-)");
-    changeCol.setMinWidth(80);
-    changeCol.setPrefWidth(80);
-    changeCol.setMaxWidth(80);
+    changeCol.setMinWidth(70);
+    changeCol.setPrefWidth(70);
+    changeCol.setMaxWidth(70);
     TableColumn catCol = new TableColumn("Category");
-    catCol.setMinWidth(240);
-    catCol.setPrefWidth(240);
-    catCol.setMaxWidth(240);
+    catCol.setMinWidth(190);
+    catCol.setPrefWidth(190);
+    catCol.setMaxWidth(190);
     TableColumn dateCol = new TableColumn("Date");
-    dateCol.setMinWidth(160);
-    dateCol.setPrefWidth(160);
-    dateCol.setMaxWidth(160);
+    dateCol.setMinWidth(120);
+    dateCol.setPrefWidth(120);
+    dateCol.setMaxWidth(120);
     TableColumn amtCol = new TableColumn("Amount");
-    amtCol.setMinWidth(160);
-    amtCol.setPrefWidth(160);
-    amtCol.setMaxWidth(160);
+    amtCol.setMinWidth(120);
+    amtCol.setPrefWidth(120);
+    amtCol.setMaxWidth(120);
+    TableColumn noteCol = new TableColumn("Note");
+    noteCol.setMinWidth(140);
+    noteCol.setPrefWidth(140);
+    noteCol.setMaxWidth(140);
 
     
 
     // TableRow 
     // table is 640 width 
     
-    table.getColumns().addAll(changeCol, catCol, dateCol, amtCol);
+    table.getColumns().addAll(changeCol, catCol, dateCol, amtCol,noteCol);
     
     // data is the table of all the rows-- the rows contain the four columns
     data.add(newData); // Add the data the user inputted
@@ -160,7 +166,6 @@ public class LogView extends BorderPane{
             foodCount += 1;
             
         }
-        System.out.println(foodCount + " food logged");
 
         // q3GoToCount is the place after quest 1 and 2 is done, and is when we starting counting food for quest 3
         // if (quest1Check && quest2Check) {q3goToCount = x+1;break;}
@@ -170,14 +175,12 @@ public class LogView extends BorderPane{
     
 
     // Quest 3-- checking out how many entries of "food" are there
-    System.out.println(q3goToCount + " is q3goToCount");
     if (checkFoodCount(q3goToCount, data) == 3 && q3goToCount > 0) {
         if (quest3Finish == false) {
             quest3Finish = true;
             GameMenuView.addProgress(40);
             GameMenuView.addPoints(40);
             q3Final = q3goToCount;
-            System.out.println(q3Final + " is q3Final");
         }
     }
     
@@ -196,7 +199,6 @@ public class LogView extends BorderPane{
     }
 
     // check if we have the 5 seperate expenses required.
-    System.out.println(q4goToCount + " is q4goToCount");
     if (expenseCount == 5 && q4goToCount > 0){
         if (quest4Finish == false) {
             quest4Finish = true;
@@ -232,10 +234,37 @@ public class LogView extends BorderPane{
     
     // the propertyValueFactory uses a getProperty (if property was "plus", it would be getPlus())
     // Allows us to properly set each value in their correct column
+            // 1. Tell the column WHERE to get the data (Property Name)
         changeCol.setCellValueFactory(new PropertyValueFactory<>("plus"));
+        // Change Transaction to TableData here:
+        changeCol.setCellFactory(column -> new TableCell<TableData, String>() { 
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle(""); 
+                } else {
+                    setText(item);
+
+                    if (item.contains("-")) {
+                        setTextFill(Color.RED);
+                        setStyle("-fx-font-weight: bold;");
+                    } else if (item.contains("+")) {
+                        setTextFill(Color.GREEN);
+                        setStyle("-fx-font-weight: bold;");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("");
+                    }
+                }
+            }
+        });
         catCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         amtCol.setCellValueFactory(new PropertyValueFactory<>("amt"));
+        noteCol.setCellValueFactory(new PropertyValueFactory<>("note"));
 
     // Add the data to the table
     table.setItems(data);
@@ -316,31 +345,62 @@ public class LogView extends BorderPane{
         table.setPlaceholder(new Label("No data collected"));
 
         TableColumn changeCol = new TableColumn("(+/-)");
-        changeCol.setMinWidth(80);
-        changeCol.setPrefWidth(80);
-        changeCol.setMaxWidth(80);
+        changeCol.setMinWidth(70);
+        changeCol.setPrefWidth(70);
+        changeCol.setMaxWidth(60);
         TableColumn catCol = new TableColumn("Category");
-        catCol.setMinWidth(240);
-        catCol.setPrefWidth(240);
-        catCol.setMaxWidth(240);
+        catCol.setMinWidth(190);
+        catCol.setPrefWidth(190);
+        catCol.setMaxWidth(190);
         TableColumn dateCol = new TableColumn("Date");
-        dateCol.setMinWidth(160);
-        dateCol.setPrefWidth(160);
-        dateCol.setMaxWidth(160);
+        dateCol.setMinWidth(120);
+        dateCol.setPrefWidth(120);
+        dateCol.setMaxWidth(120);
         TableColumn amtCol = new TableColumn("Amount");
-        amtCol.setMinWidth(160);
-        amtCol.setPrefWidth(160);
-        amtCol.setMaxWidth(160);
+        amtCol.setMinWidth(120);
+        amtCol.setPrefWidth(120);
+        amtCol.setMaxWidth(120);
+        TableColumn noteCol = new TableColumn("Note");
+        noteCol.setMinWidth(140);
+        noteCol.setPrefWidth(140);
+        noteCol.setMaxWidth(140);
 
         // TableRow 
         // table is 640 width 
             
-        table.getColumns().addAll(changeCol, catCol, dateCol, amtCol);
+        table.getColumns().addAll(changeCol, catCol, dateCol, amtCol, noteCol);
 
+        // 1. Tell the column WHERE to get the data (Property Name)
         changeCol.setCellValueFactory(new PropertyValueFactory<>("plus"));
+        changeCol.setCellFactory(column -> new TableCell<TableData, String>() { 
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle(""); 
+                } else {
+                    setText(item);
+
+                    if (item.contains("-")) {
+                        setTextFill(Color.RED);
+                        setStyle("-fx-font-weight: bold;");
+                    } else if (item.contains("+")) {
+                        setTextFill(Color.GREEN);
+                        setStyle("-fx-font-weight: bold;");
+                    } else {
+                        setTextFill(Color.BLACK);
+                        setStyle("");
+                    }
+                }
+            }
+        });
+        
         catCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         amtCol.setCellValueFactory(new PropertyValueFactory<>("amt"));
+        noteCol.setCellValueFactory(new PropertyValueFactory<>("note"));
 
         table.setItems(data); 
 

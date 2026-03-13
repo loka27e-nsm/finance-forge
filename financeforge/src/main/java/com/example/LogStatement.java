@@ -18,6 +18,7 @@ public class LogStatement extends BorderPane {
 
     private static boolean quest1Finish;
     private static boolean quest2Finish;
+    static int totalTransactions;
 
     public static boolean getQuest1Finish() {return quest1Finish;}
     public static boolean getQuest2Finish() {return quest2Finish;}
@@ -61,9 +62,16 @@ public class LogStatement extends BorderPane {
         HBox amountBox = new HBox(amountLabel, amountInput);
         amountBox.setAlignment(Pos.CENTER);
         amountBox.setSpacing(10);
+
+        // This will allow the user to input a note to remind themselves of the expense/revenue
+        Label noteLabel = new Label("Add a note");
+        TextField noteInput = new TextField();
+        HBox noteBox = new HBox(noteLabel, noteInput);
+        noteBox.setAlignment(Pos.CENTER);
+        noteBox.setSpacing(10);
         
 
-        VBox inputBox = new VBox(plusBox,categoryBox, dateBox, amountBox);
+        VBox inputBox = new VBox(plusBox,categoryBox, dateBox, amountBox, noteBox);
         inputBox.setPrefSize(100,150);
         inputBox.setAlignment(Pos.CENTER);
         inputBox.setSpacing(30);
@@ -92,10 +100,11 @@ public class LogStatement extends BorderPane {
                 String dayValue = dayInput.getValue().toString();
                 String yearValue = yearInput.getValue().toString();
                 String amountValue = amountInput.getText();
+                String noteValue = noteInput.getText();
 
                 String dateFinal = dateValue + "/" + dayValue + "/" + yearValue;
 
-                TableData dataValues = new TableData(plusValue,categoryValue,dateFinal,amountValue);
+                TableData dataValues = new TableData(plusValue,categoryValue,dateFinal,amountValue, noteValue);
 
                 if (plusValue.equals("+")) {
                     Main.getAccount().addToBalance(Double.parseDouble(amountValue));
@@ -113,6 +122,10 @@ public class LogStatement extends BorderPane {
                     }
                 }
 
+                // Increment total transactions regardless of +/-
+                totalTransactions++;
+
+                
                 sceneManager.showLoggingWithTable(dataValues);
                 
                 

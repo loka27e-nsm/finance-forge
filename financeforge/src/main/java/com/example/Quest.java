@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class Quest extends BorderPane {
+    // QUEST NINE NOT FINISHED
 
     //static boolean Quest6Finish = false;
     static boolean Quest7Finish = false;
@@ -20,11 +21,24 @@ public class Quest extends BorderPane {
     public static boolean getQuest6Finish() {
         return quest6Finish;
     }
+
+    public static void setQuest9Finish(boolean value) {
+        // Optional: validate or trigger events here
+        quest9Finish = value;
+    }
     
     private static boolean quest10Finish = false;
     
     public static boolean getQuest10Finish() {
         return quest10Finish;
+    }
+
+    // Placeholder for Quest 9 completion — static for now
+        private static boolean quest9Finish = false;
+
+        // Getter for Quest 9 completion
+        public static boolean getQuest9Finish() {
+            return quest9Finish;
     }
 
     public Quest(GameSceneManager sceneManager, int questNum){

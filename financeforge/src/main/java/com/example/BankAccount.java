@@ -6,6 +6,7 @@ public class BankAccount {
     private String userid;
     private double accountBalance;
 
+
     public BankAccount(String userid, double accountBalance) {
         this.userid = userid;
         this.accountBalance = accountBalance;
