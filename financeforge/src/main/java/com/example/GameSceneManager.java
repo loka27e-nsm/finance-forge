@@ -23,10 +23,6 @@ public class GameSceneManager {
     return new GameMenuView(this);
   }
 
-  public Parent createLogView() {
-    return new LogView(this);
-  }
-
   // In case there is no tableData, we have a seperate one. This basically allows us to input any new data into the table
   public Parent createLogViewWithTable(TableData newData) {
     return new LogView(this,newData);
@@ -90,11 +86,6 @@ public class GameSceneManager {
   public void showGame() {
     ensureSceneInitialized();
     scene.setRoot(createGameView());
-  }
-
-  public void showLogging() {
-    ensureSceneInitialized();
-    scene.setRoot(createLogView());
   }
 
   public void showLoggingWithTable(TableData newData) {

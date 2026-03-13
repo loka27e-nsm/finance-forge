@@ -80,7 +80,7 @@ public class LogStatement extends BorderPane {
         toLogButton.setPrefSize(100, 40); 
         toLogButton.setMaxSize(100,40);
         toLogButton.setFont(new Font("Cambria", 21));
-        toLogButton.setOnAction(e -> sceneManager.showLogging());
+        toLogButton.setOnAction(e -> sceneManager.showLoggingWithTable(new TableData("a","a","a","a","a")));
 
         HBox backBox = new HBox(toLogButton);
         backBox.setAlignment(Pos.CENTER);

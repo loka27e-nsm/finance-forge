@@ -2,6 +2,7 @@ package com.example;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
@@ -18,6 +20,9 @@ public class GameMenuView extends BorderPane {
 
   private static int pointsEarned = 0;
   private static int progressPercent = 0; 
+
+  @FXML 
+  private Label centerLabel = new Label("");
 
   public GameMenuView(GameSceneManager sceneManager) {
     // Top bar with a "Back to Menu" button
@@ -53,7 +58,7 @@ public class GameMenuView extends BorderPane {
     Button loggingButton = new Button("Logging");
     loggingButton.setPrefSize(215, 60); 
     loggingButton.setFont(new Font("Cambria", 26));
-    loggingButton.setOnAction(e -> sceneManager.showLogging());
+    loggingButton.setOnAction(e -> sceneManager.showLoggingWithTable(new TableData("a","a","a","a","a")));
     loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2");
     loggingButton.setOnMouseEntered(e ->  loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #14973bda; -fx-border-width: 4"));
     loggingButton.setOnMouseExited(e ->  loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2"));
@@ -92,6 +97,7 @@ public class GameMenuView extends BorderPane {
     double paycheckPercent = 0;
     double giftPercent = 0;
     double bonusPercent = 0;
+    double dataCheck = 0;
 
     try {
       for (TableData currentData: LogView.getData()) {
@@ -108,30 +114,92 @@ public class GameMenuView extends BorderPane {
         }
         }
     } catch (Exception e) {
-
+      
     }
 
     ObservableList<PieChart.Data> pieChartData =
+      FXCollections.observableArrayList(
+      );
+
+    if ((foodPercent + transportationPercent + utilitiesPercent + entertainmentPercent + clothingPercent + miscellaneousPercent+ paycheckPercent + giftPercent + bonusPercent) == 0) {
+      pieChartData =
+      FXCollections.observableArrayList(
+          new PieChart.Data("Data Needed",1221)
+      );
+
+
+      dataCheck = 0;
+    } else {
+      pieChartData =
       FXCollections.observableArrayList(
           new PieChart.Data("Food", foodPercent),
           new PieChart.Data("Transportation", transportationPercent),
           new PieChart.Data("Utilities", utilitiesPercent),
           new PieChart.Data("Entertainment", entertainmentPercent),
           new PieChart.Data("Clothing", clothingPercent),
-          new PieChart.Data("Miscellaneous", miscellaneousPercent)
+          new PieChart.Data("Miscellaneous", miscellaneousPercent),
+          new PieChart.Data("Paycheck", paycheckPercent),
+          new PieChart.Data("Gift", giftPercent),
+          new PieChart.Data("Bonus", bonusPercent)
       );
+      dataCheck = 1;
+    }
+    
     
     final PieChart budgetChart = new PieChart(pieChartData);
+
+    if (dataCheck == 0) {
+      budgetChart.setLabelsVisible(false); 
+      budgetChart.setLegendVisible(false);
+      centerLabel.setText("DATA NEEDED");}
+
+    else {
+      budgetChart.setLabelsVisible(true); 
+      budgetChart.setLegendVisible(true);
+      centerLabel.setText("");}
+
+    centerLabel.setStyle(
+    "-fx-font-size: 16px; " +
+    "-fx-font-weight: bold; " +
+    "-fx-text-fill: #121212; " + // Dark grey for readability
+    "-fx-background-color: rgb(255, 255, 255); " + // Slight white background
+    "-fx-background-radius: 5; " + // Rounded corners
+    "-fx-padding: 5;" // Space around the text
+);
+
     budgetChart.setPrefSize(400,600);
 
+    StackPane chartContainer = new StackPane();
+    chartContainer.getChildren().addAll(budgetChart, centerLabel);
+
+    VBox balanceBox = new VBox();
 
     Label chartLabel = new Label("Expenses Visual");
     chartLabel.setStyle("-fx-padding: 0 160 0 0");
     chartLabel.setFont(new Font("Cambria", 18));
-    VBox balanceBox = new VBox(chartLabel, budgetChart);
+    if (dataCheck == 0){
+      balanceBox = new VBox(chartLabel, chartContainer);
+    } else {
+      balanceBox = new VBox(chartLabel, budgetChart);
+    }
+
     balanceBox.setAlignment(Pos.CENTER_RIGHT);
     balanceBox.setStyle("-fx-padding: 100 0 100 0");
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // This is for the points button
     Button points = new Button("Points Earned");
     points.setFont(new Font("Helvetica", 30));
@@ -160,9 +228,7 @@ public class GameMenuView extends BorderPane {
     
     setTop(navButtons);
     setCenter(dashboardActions);
-    if (!(foodPercent == 0 & transportationPercent == 0 & utilitiesPercent == 0 &
-        entertainmentPercent == 0 & clothingPercent == 0 & miscellaneousPercent == 0 &
-        paycheckPercent == 0 & giftPercent == 0 & bonusPercent == 0)) {setRight(balanceBox);}
+    setRight(balanceBox);
     setBottom(questBox);
 
 

@@ -44,7 +44,7 @@ public class QuestView extends BorderPane{
     Button loggingButton = new Button("Logging");
     loggingButton.setPrefSize(215, 60); 
     loggingButton.setFont(new Font("Cambria", 26));
-    loggingButton.setOnAction(e -> sceneManager.showLogging());
+    loggingButton.setOnAction(e -> sceneManager.showLoggingWithTable(new TableData("a","a","a","a","a")));
     loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2");
     loggingButton.setOnMouseEntered(e ->  loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #14973bda; -fx-border-width: 4"));
     loggingButton.setOnMouseExited(e ->  loggingButton.setStyle("-fx-background-color: #6fed6fc3; -fx-border-color: #105b26c8; -fx-border-width: 2"));
