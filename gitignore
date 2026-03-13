@@ -1,4 +1,11 @@
+# Ignore Maven build output
+**/target/
+*.class
+
+# Ignore the JavaFX SDK (since it's an external library)
+openjfx-25.0.2/
+
+# Ignore IDE specific files
+.idea/
 .vscode/
-__pycache__/
-venv/
-.env
+*.iml
