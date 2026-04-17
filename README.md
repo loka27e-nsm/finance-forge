@@ -15,10 +15,8 @@ Welcome to the Finance Forge, a gamified financial tracker that turns personal b
 - If you log an expense, a pie chart in the dashboard will appear
   
 ## Features
-### Version 2.0 (Solo development)
 - Users can remove their logged expenses
 - Piechart now shows when no expense is logged
-### Version 1.0 (With a partner from class)
 - Users can log their expenses
 - Users can track their progress in quests
 - Users can browse quests
