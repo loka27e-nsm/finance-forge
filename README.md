@@ -35,4 +35,5 @@ Welcome to the Finance Forge, a gamified financial tracker that turns personal b
 - For Quests 7 and 9, with 9 completing a budgeting goal from 7, there is no current code stopping someone from clicking on 9 first for points
 - Plan to add database to ensure Users have saved data. Will be local until I am unable to make it persistent
 - Plan to do a complete overhaul of the code for the quest to ensure natural progression
+- Plan: Quest 1-5 will get the User familiar with the app and is in order, Quest 6-10 will be persistent per month and involves challenges to ensure healthy financial habits
 
