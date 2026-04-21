@@ -28,6 +28,7 @@ Welcome to the Finance Forge, a gamified financial tracker that turns personal b
 - The program ensures valid inputs to ensure it functions correctly
 
 ## Bugs/Limitations to be fixed
+- Currently only works when you download the file and run it in a IDE like VSCode
 - When creating a log statement, if you put a negative value in the amount category, it can mess up the pie chart on the dashboard and some progress logic
 - For the first four quests, they must be completed in order, but the others are less restricted. Only exception is Quest 7 MUST be completed before Quest 8
 - For Quests 7 and 9, with 9 completing a budgeting goal from 7, there is no current code stopping someone from clicking on 9 first for points
