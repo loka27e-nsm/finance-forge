@@ -20,14 +20,16 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
   
 ## Features
 - Users can remove their logged expenses
-- Piechart now shows when no expense is logged
 - Users can log their expenses
 - Users can track their progress in quests
 - Users can browse quests
 - Users can set budget goals (ie. save $200 by end of month)
 - Users can track their progress in goals
-- The program outputs a message based on user dollar input-- slightly modified. Instead of a message, we have a table that updates
 - Users log in revenue (salary, wage, paycheck,grant, etc.)
+
+## Interface
+- Piechart now shows when no expense is logged
+- The program outputs a message based on user dollar input-- slightly modified. Instead of a message, we have a table that updates
 - A dashboard showing the above to make the experience appealing
 - The program ensures valid inputs to ensure it functions correctly
 
