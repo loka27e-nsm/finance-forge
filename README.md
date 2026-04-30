@@ -5,18 +5,20 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
 
 ## User Guide
 ### 📥 Installation & Setup
-* Open a code editor like VS Code:
+* On Oracle, download JDK23 
+* Open a code editor like VS Code
+* Grab the necessary Java extensions
 * Clone the repository in VS Code using the Ctrl Shift P pallette
 * Locate the main entry point file Main.java and run it using your editor's "Run" command.
 
 ### 🎮 How to Play
-Once the application launches, follow this workflow to explore the features:
-Navigation: Use the Start button to enter or Quit to exit.
-The Quest System:
-Navigate from the Dashboard to the Quest tab.
-Select Quest 1 to begin.
-Note: Once a quest is completed, it becomes locked for the remainder of the session.
-If a quest requires a recorded statement, use the button on the Dashboard or the table in the Right Tab.
+* Once the application launches, follow this workflow to explore the features:
+* Use the Start button to enter or Quit to exit.
+* The Quest System:
+* Navigate from the Dashboard to the Quest tab.
+* Select Quest 1 to begin.
+* Note: Once a quest is completed, it becomes locked for the remainder of the session.
+* If a quest requires a recorded statement, use the button on the Dashboard or the table in the Right Tab.
 
 📊 Tracking Progress
 Stats: Hover over Points and Balance in the Dashboard for a detailed tooltip of your current standing.
