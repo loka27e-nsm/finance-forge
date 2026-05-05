@@ -4,6 +4,8 @@
 
 # Ignore the JavaFX SDK (since it's an external library)
 openjfx-25.0.2/
+id_ed25520*
+financeforge/target/
 
 # Ignore IDE specific files
 .idea/
