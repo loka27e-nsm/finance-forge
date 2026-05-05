@@ -14,8 +14,8 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
 ### 📥 Installation & Setup: Terminal
 * On Oracle, download JDK23
 * Download JavaFX 23 as well
-* **Compile**: PS {path}\financeforge> javac --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -d out src/main/java/com/example/*.java
-* **Execute:** PS {path}\financeforge> java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.launcher
+* **Compile**: `PS {path}\financeforge> javac --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -d out src/main/java/com/example/*.java`
+* **Execute:** `PS {path}\financeforge> java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.launcher`
 
 ### 🎮 How to Play
 * Once the application launches, follow this workflow to explore the features:
