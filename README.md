@@ -5,15 +5,15 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
 
 ## User Guide (Setup 1 of 2 ways)
 ### 📥 Installation & Setup: Code Editor
-* On Oracle, download JDK23 
+* On [Oracle](https://www.oracle.com/java/technologies/javase/jdk23-archive-downloads.html), download JDK23 
 * Open a code editor like VS Code
 * Grab the necessary Java extensions
 * Clone the repository in VS Code using the Ctrl Shift P pallette
 * Locate the main entry point file Main.java and run it using your editor's "Run" command.
 
 ### 📥 Installation & Setup: Terminal
-* On Oracle, download JDK23
-* Download JavaFX 23 as well
+* On [Oracle](https://www.oracle.com/java/technologies/javase/jdk23-archive-downloads.html), download JDK23
+* Download [Javafx 23](https://jdk.java.net/javafx23/) as well
 * **Compile**: `PS {path}\financeforge> javac --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -d out src/main/java/com/example/*.java`
 * **Execute:** `PS {path}\financeforge> java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.launcher`
 
