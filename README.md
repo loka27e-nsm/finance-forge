@@ -11,6 +11,10 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
 * Clone the repository in VS Code using the Ctrl Shift P pallette
 * Locate the main entry point file Main.java and run it using your editor's "Run" command.
 
+### 📥 Installation & Setup
+* **Compile**: PS {path}\financeforge> javac --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -d out src/main/java/com/example/*.java
+* **Execute:** PS {path}\financeforge> java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.launcher
+
 ### 🎮 How to Play
 * Once the application launches, follow this workflow to explore the features:
 * Use the Start button to enter or Quit to exit.
