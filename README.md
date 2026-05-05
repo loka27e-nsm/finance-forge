@@ -3,15 +3,17 @@ Welcome to the Finance Forge, a gamified financial tracker that turns personal b
 ## Program Overview
 Users complete virtual quests (ex: saving money, tracking expenses, and hitting financial milestones/goals to earn rewards and unlock levels or items in an adventure map). This idea was mainly inspired by an interest in combining financial literacy, a skill of growing importance, with interactive gamification, counteracting shortened attention spans to help students or young adults who want to develop financial literacy while preventing boredom or procrastination. The program will use a Java FX based GUI system to display dashboards, quest lists, and visual feedback, providing immediate, easily accessible/interpretable responses to user actions (buttons pressed, dollar amounts entered, etc.). Completing the basic quests laid out shows the benefits of budgeting and mindful money management to a broader audience.
 
-## User Guide
-### 📥 Installation & Setup
+## User Guide (Setup 1 of 2 ways)
+### 📥 Installation & Setup: Code Editor
 * On Oracle, download JDK23 
 * Open a code editor like VS Code
 * Grab the necessary Java extensions
 * Clone the repository in VS Code using the Ctrl Shift P pallette
 * Locate the main entry point file Main.java and run it using your editor's "Run" command.
 
-### 📥 Installation & Setup
+### 📥 Installation & Setup: Terminal
+* On Oracle, download JDK23
+* Download JavaFX 23 as well
 * **Compile**: PS {path}\financeforge> javac --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -d out src/main/java/com/example/*.java
 * **Execute:** PS {path}\financeforge> java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.launcher
 
