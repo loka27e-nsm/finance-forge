@@ -4,6 +4,8 @@ Welcome to the Finance Forge, a gamified financial tracker that turns personal b
 Users complete virtual quests (ex: saving money, tracking expenses, and hitting financial milestones/goals to earn rewards and unlock levels or items in an adventure map). This idea was mainly inspired by an interest in combining financial literacy, a skill of growing importance, with interactive gamification, counteracting shortened attention spans to help students or young adults who want to develop financial literacy while preventing boredom or procrastination. The program will use a Java FX based GUI system to display dashboards, quest lists, and visual feedback, providing immediate, easily accessible/interpretable responses to user actions (buttons pressed, dollar amounts entered, etc.). Completing the basic quests laid out shows the benefits of budgeting and mindful money management to a broader audience.
 
 ## User Guide (Setup 1 of 2 ways)
+### ⚠️ Pushed class files to here. Folder name is target. If you download the folders, delete the "Target" Folder
+
 ### 📥 Installation & Setup: Code Editor
 * On [Oracle](https://www.oracle.com/java/technologies/javase/jdk23-archive-downloads.html), download JDK23 
 * Open a code editor like VS Code
