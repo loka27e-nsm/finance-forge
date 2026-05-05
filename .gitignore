@@ -6,6 +6,10 @@
 openjfx-25.0.2/
 id_ed25520*
 financeforge/target/
+out/
+financeforge/out/
+financeforge/bin/
+*.class
 
 # Ignore IDE specific files
 .idea/
