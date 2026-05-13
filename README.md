@@ -46,6 +46,7 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
 - The program ensures valid inputs to ensure it functions correctly
 
 ## Bugs/Limitations to be fixed
+- Local based
 - Currently only works when you download the file and run it in a IDE like VSCode
 - When creating a log statement, if you put a negative value in the amount category, it can mess up the pie chart on the dashboard and some progress logic
 - For the first four quests, they must be completed in order, but the others are less restricted. Only exception is Quest 7 MUST be completed before Quest 8
