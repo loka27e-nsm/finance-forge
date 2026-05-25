@@ -30,7 +30,7 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
   ```
 * **Execute:**
   ```shell
-  PS {path}\financeforge java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.launcher
+  PS {path}\financeforge java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.main
   ```
 
 ### 🎮 How to Play
