@@ -22,7 +22,7 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
 * Download [Javafx 23](https://jdk.java.net/javafx23/) as well
 * **Navigate:**:
   ```shell
-  Cd .../financeforge
+  Cd .../finance-forge/financeforge
   ```
 * **Compile**:
   ```shell
