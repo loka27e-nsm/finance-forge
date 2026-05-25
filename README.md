@@ -20,11 +20,11 @@ Users complete virtual quests (ex: saving money, tracking expenses, and hitting 
 * Download [Javafx 23](https://jdk.java.net/javafx23/) as well
 * **Compile**:
   ```shell
-  PS {path}\financeforge> javac --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -d out src/main/java/com/example/*.java
+  PS {path}\financeforge javac --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -d out src/main/java/com/example/*.java
   ```
 * **Execute:**
   ```shell
-  PS {path}\financeforge> java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.launcher
+  PS {path}\financeforge java --module-path "{File Path for JavaFx 23}" --add-modules javafx.controls,javafx.fxml -cp out com.example.launcher
   ```
 
 ### 🎮 How to Play
