@@ -3,7 +3,7 @@ Welcome to the Finance Forge, a gamified financial tracker that turns personal b
 
 This page covers what the program is, how to run it and navigate it, and what will be added. To those curious on the deeper side of this project, go [here](https://github.com/loka27e-nsm/finance-forge/wiki)
 
-_This application is in progress and may not function as expected_
+_This application is in progress and may not function as expected. Development of application currently paused_
 ## Program Overview
 Users complete virtual quests (ex: saving money, tracking expenses, and hitting financial milestones/goals to earn rewards and unlock levels or items in an adventure map). This idea was mainly inspired by an interest in combining financial literacy, a skill of growing importance, with interactive gamification, counteracting shortened attention spans to help students or young adults who want to develop financial literacy while preventing boredom or procrastination. The program will use a Java FX based GUI system to display dashboards, quest lists, and visual feedback, providing immediate, easily accessible/interpretable responses to user actions (buttons pressed, dollar amounts entered, etc.). Completing the basic quests laid out shows the benefits of budgeting and mindful money management to a broader audience.
 
